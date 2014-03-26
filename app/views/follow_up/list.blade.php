@@ -42,7 +42,7 @@ $patient = Patient::all();
                     <td>{{ $us->info()->orderBy('created_at','DESC')->first()->regions->region }}</td>
                     <td>{{ $us->info()->orderBy('created_at','DESC')->first()->districts->district }}</td>
                     <td id="{{ $us->id }}">
-                        <a href='{{ url("patient/follow_up/{$us->id}") }}' title="View Staff log" class="userlog"><i class="fa fa-mail-forward text-success"></i> Follow Up</a>&nbsp;&nbsp;&nbsp;
+                        <a href="patient/follow_up/{$us->id}" title="View Staff log" class="userlog"><i class="fa fa-mail-forward text-success"></i> Follow Up</a>&nbsp;&nbsp;&nbsp;
                         <a href="#edit" title="edit User" class="edituser"><i class="fa fa-pencil text-info"></i> edit</a>&nbsp;&nbsp;&nbsp;
                         <a href="#b" title="delete User" class="deleteuser"><i class="fa fa-trash-o text-danger"></i> delete</a>
                     </td>

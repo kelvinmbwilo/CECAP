@@ -44,4 +44,8 @@ class Patient extends Eloquent {
         return $this->hasMany("ContraceptiveHistory","patient_id","id");
     }
 
+    public function gynocology(){
+        return $this->hasMany("GynecologicalHistory","patient_id","id");
+    }
+
 }

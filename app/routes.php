@@ -75,7 +75,7 @@ Route::get('patient/register',array('uses'=>'PatientController@create'));
 Route::post('patient/region_check/{id}',array('uses'=>'PatientController@check_region'));
 
 //making a patient follow up...
-Route::post('patient/follow_up/{id}',array('uses'=>'PatientController@followup'));
+Route::get('patient/follow_up/{id}',array('uses'=>'PatientController@followup'));
 
 //patient registration
 Route::post('patient/add',array('uses'=>'PatientController@store'));
