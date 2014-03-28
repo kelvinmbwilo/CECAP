@@ -144,7 +144,8 @@ class PatientController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$patient = Patient::find($id);
+        return View::make('visit.index',compact('patient'));
 	}
 
 	/**
@@ -187,5 +188,97 @@ class PatientController extends \BaseController {
     public function followup($id){
         $patient = Patient::find($id);
         return View::make("follow_up.index",compact("patient"));
+    }
+
+    public function store_followup($id){
+        $patient = Patient::find($id);
+        //adding patient visit info
+        $visit = Visit::create(array(
+            "patient_id" => $patient->id,
+            "visit_date" => date('Y-m-d')
+        ));
+
+        //adding address information
+        PatientInfo::create(array(
+            "patient_id"        => $patient->id,
+            "visit_id"          => $visit->id,
+            "hospital_id"        => "somenumber",
+            "region"            => Input::get("region"),
+            "district"          => Input::get("district"),
+            "ward"              => Input::get("ward"),
+            "ten_cell_leader"   => Input::get("t_cell_leadr")
+        ));
+
+        //adding gynecological history inforamtion for a visit
+        GynecologicalHistory::create(array(
+            "patient_id"                => $patient->id,
+            "visit_id"                  => $visit->id,
+            "parity"                    => Input::get("parity"),
+            "number_of_pregnancy"       => Input::get("number_of_preg"),
+            "menarche"                  => Input::get("menarche"),
+            "age_at_sexual_debut"       => Input::get("start_sex_age"),
+            "marital_status"            => Input::get("marital"),
+            "age_at_first_marriage"     => Input::get("first_marriage"),
+            "sexual_partner"            => Input::get("sexual_partner"),
+            "partner_sexual_partner"    => Input::get("partner_sexual_partner")
+
+        ));
+
+        //adding contraceptive history
+        ContraceptiveHistory::create(array(
+            "patient_id"                => $patient->id,
+            "visit_id"                  => $visit->id,
+            "current_status"            => Input::get("current_on_contra"),
+            "current_contraceptive_id"  => (Input::has("current_contra"))?Input::get("current_contra"):"",
+        ));
+
+        //adding HIV status
+        HivStatus::create(array(
+            "patient_id"                => $patient->id,
+            "visit_id"                  => $visit->id,
+            "status"                    =>(Input::has("hiv_status"))?Input::get("hiv_status"):"",
+            "art_status"                =>(Input::has("art_status"))?Input::get("art_status"):"",
+            "pitc_offered"              =>(Input::has("ptic_stat"))?Input::get("ptic_stat"):"no",
+            "pitc_agreed"               =>(Input::has("ptic_agree"))?Input::get("ptic_agree"):"",
+            "pitc_result"               =>(Input::has("current_test_result"))?Input::get("current_test_result"):"",
+            "pitc_cd4_count"            =>(Input::has("cd4_stat"))?Input::get("cd4_stat"):"",
+        ));
+
+        //adding VIA Status
+        ViaStatus::create(array(
+            "patient_id"                => $patient->id,
+            "visit_id"                  => $visit->id,
+            "via_counselling_status"    => Input::get("via_counceling"),
+            "via_test_status"           => Input::get("via_test"),
+            "reject_reason"             =>(Input::has("via_reason"))?Input::get("via_reason"):"",
+            "via_result"                =>(Input::has("via_results"))?Input::get("via_results"):""
+        ));
+
+        //adding colposcopy
+        ColposcopyStatus::create(array(
+            "patient_id"    => $patient->id,
+            "visit_id"      => $visit->id,
+            "status"        => Input::get("colposcopy_status"),
+            "result_id"     => (Input::has("colpo_result"))?Input::get("colpo_result"):""
+        ));
+
+        //adding Pap smear result
+        PapsmearStatus::create(array(
+            "patient_id"    => $patient->id,
+            "visit_id"      => $visit->id,
+            "status"        => Input::get("pap_status"),
+            "result_id"     => (Input::has("pap_result"))?Input::get("pap_result"):""
+        ));
+
+        //adding intervetion status
+        Intervention::create(array(
+            "patient_id"        => $patient->id,
+            "visit_id"          => $visit->id,
+            "type_id"           => (Input::has("intervention"))?Input::get("intervention"):"",
+            "indicator_id"      => (Input::has("indicator"))?Input::get("indicator"):"",
+            "histology_id"      => (Input::has("histology"))?Input::get("histology"):"",
+            "cancer_id"         => (Input::has("cancer"))?Input::get("cancer"):"",
+            "differentiation"   => (Input::has("differentiation"))?Input::get("differentiation"):""
+        ));
     }
 }

@@ -68,8 +68,11 @@ Route::get('user/log/{id}',array('as'=>'userlog', 'uses'=>'UserController@show')
 //display a patient list
 Route::get('patients',array('uses'=>'PatientController@index'));
 
-//display a system usage log for a user
+//display a form to register new user
 Route::get('patient/register',array('uses'=>'PatientController@create'));
+
+//display a A single patient information
+Route::get('patients/{id}',array('uses'=>'PatientController@show'));
 
 //check for a regions district...
 Route::post('patient/region_check/{id}',array('uses'=>'PatientController@check_region'));
@@ -77,5 +80,11 @@ Route::post('patient/region_check/{id}',array('uses'=>'PatientController@check_r
 //making a patient follow up...
 Route::get('patient/follow_up/{id}',array('uses'=>'PatientController@followup'));
 
+//making a patient follow up...
+Route::post('patient/follow_up/{id}',array('uses'=>'PatientController@store_followup'));
+
 //patient registration
 Route::post('patient/add',array('uses'=>'PatientController@store'));
+
+//patient registration
+Route::post('patient/delete/{id}',array('uses'=>'PatientController@destroy'));

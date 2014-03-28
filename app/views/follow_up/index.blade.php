@@ -7,13 +7,16 @@
 <li>
     <a href="{{ url('patients') }}">patients</a>
 </li>
+<li>
+    <a href="{{ url("patients/{$patient->id}") }}">{{ $patient->first_name }} {{ $patient->middle_name }} {{ $patient->last_name }}</a>
+</li>
 <li class="active">Follow Up</li>
 
 @stop
 
 @section('contents')
 <h3><i class="fa fa-user-md"></i> Patient Follow Up<span class="pull-right">{{ $patient->first_name }} {{ $patient->middle_name }} {{ $patient->last_name }}</span> </h3>
-{{ Form::open(array("url"=>url('patient/add'),"class"=>"form-horizontal","id"=>'FileUploader')) }}
+{{ Form::open(array("url"=>url("patient/follow_up/{$patient->id}"),"class"=>"form-horizontal","id"=>'FileUploader')) }}
 
 <div class="row">
     <span class="help-block">**The pre filled values are values from last visit.</span>
@@ -84,8 +87,7 @@
 </div>
 <div id="output"></div>
 <div class='col-sm-12 form-group text-center'>
-    {{ Form::submit('Add User',array('class'=>'btn btn-primary','id'=>'submitqn')) }}
-    {{ Form::reset('Reset',array('class'=>'btn btn-warning','id'=>'submitqn')) }}
+    {{ Form::submit('Submit',array('class'=>'btn btn-primary','id'=>'submitqn')) }}
 </div>
 {{ Form::close() }}
 

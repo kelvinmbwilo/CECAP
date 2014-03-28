@@ -32,8 +32,8 @@
                 var histology = $("#histology").html()
                 var cancer = $("#cancer").html()
                 $("#histology,#cancer").html("");
-                $("select[name=colpo_result]").change(function(){
-                    if($(this).val() == "5"){
+                $("select[name=intervention]").change(function(){
+                    if($(this).val() == "5" || $(this).val() == "8" || $(this).val() == "6" || $(this).val() == "7" ){
                         $("#histology").html(histology);
 
                         $("select[name=histology]").change(function(){

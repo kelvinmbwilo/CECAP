@@ -17,32 +17,44 @@ class Visit extends Eloquent {
     protected  $guarded = array('id');
 
     public function patient(){
-        return $this->belongsTo('Patient', 'patient_id', 'id');
+        return $this->belongsTo('Patient', 'id', 'patient_id');
     }
 
     public function via(){
-        return $this->hasMany('ViaStatus', 'visit_id', 'id');
+        return $this->belongsTo('ViaStatus', 'id', 'visit_id');
     }
 
     public function papsmear(){
-        return $this->hasMany('PapsmearStatus', 'visit_id', 'id');
+        return $this->belongsTo('PapsmearStatus', 'id', 'visit_id');
     }
 
     public function hiv(){
-        return $this->hasMany('HivStatus', 'visit_id', 'id');
+        return $this->belongsTo('HivStatus', 'id', 'visit_id');
     }
 
 
     public function intervention(){
-        return $this->hasMany('Intervention', 'visit_id', 'id');
+        return $this->belongsTo('Intervention', 'id', 'visit_id');
     }
 
     public function gynecology(){
-        return $this->hasMany("GynecologicalHistory","visit_id","id");
+        return $this->belongsTo("GynecologicalHistory","id","visit_id");
     }
 
     public function contraceptive(){
-        return $this->hasMany("ContraceptiveHistory","visit_id","id");
+        return $this->belongsTo("ContraceptiveHistory","id","visit_id");
+    }
+
+    public function info(){
+        return $this->belongsTo('PatientInfo', 'id', 'visit_id');
+    }
+
+    public function colposcopy(){
+        return $this->belongsTo("ColposcopyStatus", 'id', 'visit_id');
+    }
+
+    public function papsmea(){
+        return $this->belongsTo("PapsmearStatus", 'id', 'visit_id');
     }
 
 }

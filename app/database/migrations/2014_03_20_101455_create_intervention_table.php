@@ -21,7 +21,7 @@ class CreateInterventionTable extends Migration {
             $table->integer("indicator_id");
             $table->integer("histology_id");
             $table->integer("cancer_id");
-            $table->integer("differentiation");
+            $table->string("differentiation");
 			$table->timestamps();
 		});
 	}

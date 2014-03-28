@@ -36,30 +36,22 @@
     <div class="container">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-left bootstrap-admin-theme-change-size">
-                <li class="text">Change size:</li>
-                <li><a class="size-changer small">Small</a></li>
-                <li><a class="size-changer large active">Large</a></li>
+<li><a href="#">Cervical Cancer Prevention Program (CECAP)</a> </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
                 <li>
                     <a href="#">Reminders <i class="glyphicon glyphicon-bell"></i></a>
                 </li>
                 <li>
                     <a href="#">Settings <i class="glyphicon glyphicon-cog"></i></a>
                 </li>
-                <li>
-                    <a href="#">Go to frontend <i class="glyphicon glyphicon-share-alt"></i></a>
-                </li>
                 <li class="dropdown">
                     <a href="#" role="button" class="dropdown-toggle" data-hover="dropdown"> <i class="glyphicon glyphicon-user"></i> {{ Auth::user()->firstname }} {{ Auth::user()->middlename }} {{ Auth::user()->lastname }} <i class="caret"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#"><i class="fa fa-user"></i> profile</a></li>
+                        <li><a href="#"><i class="fa fa-lock"></i> change password</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="{{ url('logout') }}">Logout</a></li>
+                        <li><a href="{{ url('logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -143,7 +135,7 @@
     <div class="container">
         <div class="row">
             <footer role="contentinfo">
-                <p class="left">CECAP</p>
+                <p class="left">Cervical Cancer Prevention Program (CECAP)</p>
                 <p class="right">&copy; {{ date("Y") }}<a href="http://www.meritoo.pl" target="_blank"> Softmed LTD</a></p>
             </footer>
         </div>

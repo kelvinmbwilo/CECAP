@@ -48,4 +48,12 @@ class Patient extends Eloquent {
         return $this->hasMany("GynecologicalHistory","patient_id","id");
     }
 
+    public function colposcopy(){
+        return $this->hasMany("ColposcopyStatus","patient_id","id");
+    }
+
+    public function papsmea(){
+        return $this->hasMany("PapsmearStatus","patient_id","id");
+    }
+
 }
