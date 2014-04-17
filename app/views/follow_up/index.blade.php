@@ -17,7 +17,7 @@
 @section('contents')
 <h3><i class="fa fa-user-md"></i> Patient Follow Up<span class="pull-right">{{ $patient->first_name }} {{ $patient->middle_name }} {{ $patient->last_name }}</span> </h3>
 {{ Form::open(array("url"=>url("patient/follow_up/{$patient->id}"),"class"=>"form-horizontal","id"=>'FileUploader')) }}
-
+Hosptal Number {{ Form::text('hosp_no', $patient->hospital_id ,array('class'=>'form-control col-sm-6','placeholder'=>'Hosptal Number','required'=>'required')) }}
 <div class="row">
     <span class="help-block">**The pre filled values are values from last visit.</span>
     <div class="col-md-6" style="padding-left: 0px;padding-right: 5px">

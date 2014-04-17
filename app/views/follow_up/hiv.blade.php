@@ -5,62 +5,100 @@
             <div class='form-group'>
 
                 <div class='col-sm-4'>
-                    HIV Status known (One Last Year)<br>{{ Form::select('hiv_status',array('no'=>'No','yes'=>'Yes'),'',array('class'=>'form-control','required'=>'requiered')) }}
+                    HIV Status known<br>{{ Form::select('hiv_status',array('Unknown'=>'Unknown','Negative'=>'Negative','Positive'=>'Positive'),'',array('class'=>'form-control','required'=>'requiered')) }}
                 </div>
                 <div class='col-sm-4'>
-                    <span id="ptic_stat">PITC Offered<br> {{ Form::select('ptic_stat',array('no'=>'No','yes'=>'Yes'),'',array('class'=>'form-control')) }}</span>
+
+                    <span id="last_test">Last Test Done In(year)<br> {{ Form::select('last_test',array_combine(range(date('Y'),1970), range(date('Y'),1970)),'',array('class'=>'form-control')) }}</span>
                 </div>
-                <div class='col-sm-4'>
-                    <span id="ptic_agree">PITC Agreed<br> {{ Form::select('ptic_agree',array('no'=>'No','yes'=>'Yes'),'',array('class'=>'form-control')) }}</span>
-                </div>
+
             </div>
 
             <div class='form-group' id="positive">
                 <div class='col-sm-4'>
-                    current test results<br>{{ Form::select('current_test_result',array('Negative'=>'Negative','Positive'=>'Positive'),'',array('class'=>'form-control')) }}
+                    Is the client on ART? <br> {{ Form::select('art_status',array('no'=>'No','yes'=>'Yes'),'',array('class'=>'form-control','required'=>'requiered')) }}
                 </div>
                 <div class='col-sm-4'>
-                    <span id="art_stat">Is the client on ART? <br> {{ Form::select('art_status',array('no'=>'No','yes'=>'Yes'),'',array('class'=>'form-control')) }}</span>
-                </div>
-                <div class='col-sm-4'>
-                    <span id="cd4_stat">current CD4 (cells/mm3) <br> {{ Form::select('cd4_stat',array_combine(range(0,1500), range(0,1500)),'500',array('class'=>'form-control')) }}</span>
+                    What is the latest CD4 count(cells/mm3) (within last 6 months) <br> {{ Form::select('prev_cd4',array_combine(range(0,1500), range(0,1500)),'500',array('class'=>'form-control')) }}
                 </div>
             </div>
 
+            <div class='form-group' id="negative">
+
+                <div class='col-sm-4'>
+                    Patient test again<br>{{ Form::select('test_again',array('no'=>'No','yes'=>'Yes'),'',array('class'=>'form-control')) }}
+                </div>
+                <div class='col-sm-4'>
+                    <span id="current_test_result">current test results<br>{{ Form::select('current_test_result',array('Negative'=>'Negative','Positive'=>'Positive'),'',array('class'=>'form-control')) }}</span>
+                </div>
+                <div class='col-sm-2'>
+                    <span id="current_cd4">current CD4 (cells/mm3)<br>{{ Form::select('current_cd4',array_combine(range(0,1500), range(0,1500)),'500',array('class'=>'form-control')) }} </span>
+                </div>
+                <div class='col-sm-2'>
+                    <span id="current_art">ART offered <br>{{ Form::select('current_art_status',array('no'=>'No','yes'=>'Yes'),'',array('class'=>'form-control','required'=>'requiered')) }} </span>
+                </div>
+                <div class='col-sm-4' id="hivstat">
+                    <span >Reason<br> {{ Form::select('unknown_reason',array('Counselling not offered'=>'Counselling not offered','Patient declined test'=>'Patient declined test','Test kits shortage'=>'Test kits shortage','Other'=>'Other'),'',array('class'=>'form-control')) }}</span>
+                </div>
+
+            </div>
         </div>
         <script>
             $(document).ready(function (){
 
-                var ptic_stat = $("#ptic_stat").html();
-                var ptic_agree = $("#ptic_agree").html();
+                var last_test = $("#last_test").html();
+                var hivstat = $("#hivstat").html();
                 var positive = $("#positive").html();
-                var art_stat = $("#art_stat").html();
-                var cd4_stat = $("#cd4_stat").html();
-                $("#ptic_agree,#positive").html("");
-                $("select[name=ptic_stat]").change(function(){
+                var negative = $("#negative").html();
+                var current_cd4 = $("#current_cd4").html();
+                var current_art = $("#current_art").html();
+                var current_test_result = $("#current_test_result").html();
+                $("#last_test,#positive,#negative").html("");
+                $("#negative").html(negative);
+                $("#current_cd4").html("");
+                $("#current_art").html("");
+                $("#current_test_result").html("");
+                $("select[name=test_again]").change(function(){
                     if($(this).val() == "yes"){
-                        $("#ptic_agree").html(ptic_agree);
-                        $("select[name=ptic_agree]").change(function(){
-                            if($(this).val() == "yes"){
-                                $("#positive").html(positive)
-                                $("#art_stat,#cd4_stat").html("");
-                                $("select[name=current_test_result]").change(function(){
-                                    if($(this).val() == "Positive"){
-                                        $("#art_stat").html(art_stat);
-                                        $("#cd4_stat").html(cd4_stat);
-                                    }else{
-                                        $("#art_stat,#cd4_stat").html("");
-                                    }
-                                });
+                        $("#hivstat").html("");
+                        $("#current_test_result").html(current_test_result)
+                        $("select[name=current_test_result]").change(function(){
+                            if($(this).val() == "Positive"){
+                                $("#current_cd4").html(current_cd4)
+                                $("#current_art").html(current_art)
                             }else{
-                                $("#positive").html("");
+                                $("#current_cd4").html("");
+                                $("#current_art").html("");
                             }
                         });
                     }else{
-                        $("#ptic_agree,#positive").html("");
+                        $("#current_cd4").html("");
+                        $("#current_test_result").html("");
+                        $("#hivstat").html(hivstat);
+                    }
+                });
+
+
+                $("select[name=hiv_status]").change(function(){
+                    if($(this).val() == "Negative"){
+                        $("#last_test").html(last_test);
+
+                        $("#positive").html("")
+
+                    }else if($(this).val() == "Positive"){
+                        $("#last_test").html(last_test);
+                        $("#positive").html(positive)
+
+
+                    }else{
+                        $("#last_test,#positive").html("");
+
 
                     }
                 })
+
+
+
             });
         </script>
 

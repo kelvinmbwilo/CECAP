@@ -23,83 +23,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="info.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/visit/info.blade.php">
+      <file leaf-file-name="routes.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="91" selection-start="2722" selection-end="2722" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="5184">
+            <state line="132" column="30" selection-start="4122" selection-end="4132" vertical-scroll-proportion="-0.0" vertical-offset="2376" max-vertical-offset="2682">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/visit/index.blade.php">
+      <file leaf-file-name="BaseController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/BaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="39" selection-start="417" selection-end="417" vertical-scroll-proportion="0.1" vertical-offset="272" max-vertical-offset="828">
+            <state line="57" column="49" selection-start="2439" selection-end="2439" vertical-scroll-proportion="0.0" vertical-offset="794" max-vertical-offset="1314">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="hiv.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/patient/hiv.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/views/report/hiv.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="165" selection-start="2198" selection-end="2198" vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="2070">
+            <state line="122" column="49" selection-start="5271" selection-end="5271" vertical-scroll-proportion="-2.6666667" vertical-offset="2124" max-vertical-offset="3780">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Intervention.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/Intervention.php">
+      <file leaf-file-name="ContraceptiveController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/ContraceptiveController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="26" selection-start="850" selection-end="856" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="864">
+            <state line="442" column="31" selection-start="22839" selection-end="22839" vertical-scroll-proportion="0.0" vertical-offset="7956" max-vertical-offset="12384">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Visit.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/Visit.php">
+      <file leaf-file-name="HivController.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/HivController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="23" selection-start="608" selection-end="611" vertical-scroll-proportion="0.0" vertical-offset="421" max-vertical-offset="1170">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ColposcopyStatus.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/ColposcopyStatus.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="26" selection-start="521" selection-end="527" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="648">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Patient.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/Patient.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="5" selection-start="1130" selection-end="1339" vertical-scroll-proportion="0.0" vertical-offset="511" max-vertical-offset="1152">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/follow_up/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="131" selection-start="223" selection-end="303" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="2160">
+            <state line="661" column="0" selection-start="35364" selection-end="35364" vertical-scroll-proportion="0.33660933" vertical-offset="7873" max-vertical-offset="12168">
               <folding>
-                <marker date="1395904667981" expanded="true" signature="844:1055" placeholder="..." />
-                <marker date="1395904667981" expanded="true" signature="924:1043" placeholder="..." />
-                <marker date="1395904667981" expanded="true" signature="1127:1346" placeholder="..." />
-                <marker date="1395904667981" expanded="true" signature="1214:1334" placeholder="..." />
-                <marker date="1395904667981" expanded="true" signature="1694:1905" placeholder="..." />
-                <marker date="1395904667981" expanded="true" signature="1773:1893" placeholder="..." />
-                <marker date="1395904667981" expanded="true" signature="1977:2185" placeholder="..." />
-                <marker date="1395904667981" expanded="true" signature="2055:2173" placeholder="..." />
+                <element signature="n#makeTable#0;n#HivController#0;n#!!top" expanded="false" />
+                <marker date="1397542160258" expanded="true" signature="28543:28590" placeholder="..." />
+                <marker date="1397542160258" expanded="true" signature="29209:29223" placeholder="..." />
+                <marker date="1397542160258" expanded="true" signature="29306:29336" placeholder="..." />
+                <marker date="1397542160258" expanded="true" signature="29407:29416" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PatientController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/PatientController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="94" column="13" selection-start="3793" selection-end="3804" vertical-scroll-proportion="-6.4074073" vertical-offset="1519" max-vertical-offset="6336">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="master.blade.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layout/master.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="96" column="28" selection-start="4822" selection-end="4822" vertical-scroll-proportion="0.0" vertical-offset="1728" max-vertical-offset="3024">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -116,8 +104,6 @@
       <list>
         <option value="$PROJECT_DIR$/app/views/patient/test.html" />
         <option value="$PROJECT_DIR$/app/views/patient/add1.php" />
-        <option value="$PROJECT_DIR$/app/views/patient/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/patient/via.blade.php" />
         <option value="$PROJECT_DIR$/app/views/patient/pap_smea.blade.php" />
         <option value="$PROJECT_DIR$/app/views/patient/colposcopy.blade.php" />
         <option value="$PROJECT_DIR$/app/views/patient/demograph.blade.php" />
@@ -125,26 +111,42 @@
         <option value="$PROJECT_DIR$/app/views/patient/contraceptive.blade.php" />
         <option value="$PROJECT_DIR$/app/views/patient/gynocology.blade.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2014_03_20_084541_create_gynecological_history_table.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2014_03_20_084829_create_hiv_status_table.php" />
         <option value="$PROJECT_DIR$/app/models/PatientInfo.php" />
         <option value="$PROJECT_DIR$/app/views/follow_up/demograph.blade.php" />
         <option value="$PROJECT_DIR$/app/views/follow_up/gynocology.blade.php" />
         <option value="$PROJECT_DIR$/app/views/follow_up/contraceptive.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/follow_up/hiv.blade.php" />
-        <option value="$PROJECT_DIR$/app/routes.php" />
-        <option value="$PROJECT_DIR$/app/views/patient/intervention.blade.php" />
         <option value="$PROJECT_DIR$/app/views/follow_up/intervention.blade.php" />
         <option value="$PROJECT_DIR$/app/views/follow_up/list.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/follow_up/index.blade.php" />
         <option value="$PROJECT_DIR$/app/views/patient/list.blade.php" />
-        <option value="$PROJECT_DIR$/app/controllers/PatientController.php" />
-        <option value="$PROJECT_DIR$/app/views/layout/master.blade.php" />
         <option value="$PROJECT_DIR$/app/models/Patient.php" />
         <option value="$PROJECT_DIR$/app/models/Visit.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2014_03_20_101455_create_intervention_table.php" />
-        <option value="$PROJECT_DIR$/app/views/patient/hiv.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/visit/info.blade.php" />
         <option value="$PROJECT_DIR$/app/views/visit/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/home.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/report/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/patient/via.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/patient/intervention.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/patient/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2014_03_20_084829_create_hiv_status_table.php" />
+        <option value="$PROJECT_DIR$/app/views/follow_up/hiv.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/patient/hiv.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/follow_up/index.blade.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/app/views/report/contraceptive/index.php" />
+        <option value="$PROJECT_DIR$/public/js/report/contraceptive.js" />
+        <option value="$PROJECT_DIR$/app/controllers/COntraceptiveController.php" />
+        <option value="$PROJECT_DIR$/app/models/PatientReport.php" />
+        <option value="$PROJECT_DIR$/app/views/visit/info.blade.php" />
+        <option value="$PROJECT_DIR$/app/controllers/ReportController.php" />
+        <option value="$PROJECT_DIR$/app/controllers/BaseController.php" />
+        <option value="$PROJECT_DIR$/app/controllers/ContraceptiveController.php" />
+        <option value="$PROJECT_DIR$/app/routes.php" />
+        <option value="$PROJECT_DIR$/app/views/report/contraceptive/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/layout/master.blade.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2014_04_13_042246_create_patient_report_table.php" />
+        <option value="$PROJECT_DIR$/app/controllers/PatientController.php" />
+        <option value="$PROJECT_DIR$/app/views/report/hiv.blade.php" />
+        <option value="$PROJECT_DIR$/app/controllers/HivController.php" />
       </list>
     </option>
   </component>
@@ -209,7 +211,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cancer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cancer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cancer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cancer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="report" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -285,6 +327,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="report" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cancer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cancer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="patient" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -325,7 +389,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
+              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -354,7 +418,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../wordpress" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hotel_management_system" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="options.lastSelected" value="editor" />
@@ -394,6 +458,23 @@
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0790e9c8-66a9-4c8e-b010-9b51537eda9c" name="Default" comment="" />
@@ -404,14 +485,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1368" height="741" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17398374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18373984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.07575758" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15530303" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24621212" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19772728" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -419,20 +500,20 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17398374" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18373984" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18712121" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22045454" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -440,9 +521,9 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23484848" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22348484" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -463,125 +544,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/PatientController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="60" selection-start="6059" selection-end="6059" vertical-scroll-proportion="0.0" vertical-offset="2646" max-vertical-offset="3582" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/follow_up/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="5" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="2160">
-          <folding>
-            <marker date="1395904667981" expanded="true" signature="844:1055" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="924:1043" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="1127:1346" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="1214:1334" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="1694:1905" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="1773:1893" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="1977:2185" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="2055:2173" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/follow_up/contraceptive.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="21" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="828" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/follow_up/hiv.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="94" selection-start="1533" selection-end="1541" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1368" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/follow_up/gynocology.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="158" selection-start="2231" selection-end="2231" vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="774" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/follow_up/contraceptive.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="21" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="828" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/follow_up/hiv.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="22" selection-start="1175" selection-end="1175" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1512" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Patient.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="30" selection-start="1032" selection-end="1042" vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="1008" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/patient/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="23" selection-start="2529" selection-end="2529" vertical-scroll-proportion="0.0" vertical-offset="1601" max-vertical-offset="2106" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/PatientController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="0" selection-start="2812" selection-end="2812" vertical-scroll-proportion="0.0" vertical-offset="1494" max-vertical-offset="2466" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/patient/contraceptive.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="87" selection-start="534" selection-end="545" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1116" />
-      </provider>
-    </entry>
-    <entry file="http://">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="10" selection-start="2225" selection-end="2540" vertical-scroll-proportion="-4.6666665" vertical-offset="738" max-vertical-offset="1386" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3168" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_03_20_091938_create_patient_info_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.6" vertical-offset="162" max-vertical-offset="792" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/patient/demograph.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="64" selection-start="1456" selection-end="1468" vertical-scroll-proportion="-5.111111" vertical-offset="510" max-vertical-offset="1152" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/patient/contraceptive.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="168" selection-start="626" selection-end="626" vertical-scroll-proportion="-4.0" vertical-offset="54" max-vertical-offset="1116" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_03_20_084044_create_patient_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="42" selection-start="518" selection-end="518" vertical-scroll-proportion="0.28125" vertical-offset="270" max-vertical-offset="756" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_03_20_084541_create_gynecological_history_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="25" selection-start="821" selection-end="821" vertical-scroll-proportion="0.7517241" vertical-offset="159" max-vertical-offset="864" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/patient/gynocology.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="1012" selection-end="1012" vertical-scroll-proportion="-6.703704" vertical-offset="197" max-vertical-offset="774" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_03_20_084829_create_hiv_status_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="43" selection-start="832" selection-end="832" vertical-scroll-proportion="0.62068963" vertical-offset="216" max-vertical-offset="882" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/patient/via.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="76" selection-start="280" selection-end="294" vertical-scroll-proportion="-4.6666665" vertical-offset="0" max-vertical-offset="882" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/patient/colposcopy.blade.php">
@@ -609,59 +574,14 @@
         <state line="89" column="9" selection-start="19" selection-end="3607" vertical-scroll-proportion="0.7409201" vertical-offset="1296" max-vertical-offset="1728" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/follow_up/colposcopy.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="426" selection-end="426" vertical-scroll-proportion="0.43583536" vertical-offset="0" max-vertical-offset="594" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/follow_up/demograph.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="59" selection-start="106" selection-end="114" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="1152" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/follow_up/gynocology.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="158" selection-start="2231" selection-end="2231" vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="774" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/follow_up/contraceptive.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="21" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="828" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/follow_up/hiv.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="94" selection-start="1533" selection-end="1541" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1368" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/patient/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="23" selection-start="2529" selection-end="2529" vertical-scroll-proportion="0.0" vertical-offset="1693" max-vertical-offset="2106" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/follow_up/intervention.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="118" selection-start="2025" selection-end="2025" vertical-scroll-proportion="0.2769231" vertical-offset="486" max-vertical-offset="1170" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="84" selection-start="2618" selection-end="2618" vertical-scroll-proportion="0.69606006" vertical-offset="907" max-vertical-offset="1440" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/patient/intervention.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="20" selection-start="1927" selection-end="2025" vertical-scroll-proportion="0.0" vertical-offset="432" max-vertical-offset="1170" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/PatientController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="60" selection-start="6059" selection-end="6059" vertical-scroll-proportion="-4.0" vertical-offset="2538" max-vertical-offset="3582" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layout/master.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="74" selection-start="3501" selection-end="3510" vertical-scroll-proportion="-6.5925927" vertical-offset="1118" max-vertical-offset="3042" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/patient/list.blade.php">
@@ -686,16 +606,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Patient.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="5" selection-start="1130" selection-end="1339" vertical-scroll-proportion="0.0" vertical-offset="511" max-vertical-offset="1152">
-          <folding />
-        </state>
+        <state line="56" column="5" selection-start="1130" selection-end="1339" vertical-scroll-proportion="0.0" vertical-offset="511" max-vertical-offset="1152" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ColposcopyStatus.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="26" selection-start="521" selection-end="527" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="648">
-          <folding />
-        </state>
+        <state line="26" column="26" selection-start="521" selection-end="527" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="648" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_03_20_101455_create_intervention_table.php">
@@ -705,52 +621,207 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Intervention.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="26" selection-start="850" selection-end="856" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="864">
-          <folding />
-        </state>
+        <state line="38" column="26" selection-start="850" selection-end="856" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="864" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Visit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="23" selection-start="608" selection-end="611" vertical-scroll-proportion="0.0" vertical-offset="421" max-vertical-offset="1170">
-          <folding />
-        </state>
+        <state line="30" column="23" selection-start="608" selection-end="611" vertical-scroll-proportion="0.0" vertical-offset="421" max-vertical-offset="1170" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/patient/hiv.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="165" selection-start="2198" selection-end="2198" vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="2070">
-          <folding />
-        </state>
+        <state line="3" column="0" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="792" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="128214" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/follow_up/colposcopy.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="6" selection-start="2" selection-end="425" vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="594" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/patient/gynocology.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="10" selection-start="1625" selection-end="2068" vertical-scroll-proportion="-12.0" vertical-offset="324" max-vertical-offset="774" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/patient/contraceptive.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="22" selection-start="193" selection-end="661" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1116" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/patient/via.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="28" selection-start="666" selection-end="666" vertical-scroll-proportion="-4.6666665" vertical-offset="108" max-vertical-offset="882" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/patient/intervention.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="43" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1170" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/follow_up/via.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="22" selection-start="195" selection-end="1319" vertical-scroll-proportion="-11.333333" vertical-offset="0" max-vertical-offset="882" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_03_20_084829_create_hiv_status_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="46" selection-start="661" selection-end="679" vertical-scroll-proportion="0.40601504" vertical-offset="252" max-vertical-offset="900" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/follow_up/hiv.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="27" selection-start="3373" selection-end="4180" vertical-scroll-proportion="0.0" vertical-offset="972" max-vertical-offset="2052" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/patient/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="144" selection-start="337" selection-end="478" vertical-scroll-proportion="0.0" vertical-offset="208" max-vertical-offset="2142" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/visit/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="20" selection-start="950" selection-end="950" vertical-scroll-proportion="-18.666666" vertical-offset="0" max-vertical-offset="828" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/report/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="29" selection-start="0" selection-end="6670" vertical-scroll-proportion="-72.111115" vertical-offset="105" max-vertical-offset="2268" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/patient/demograph.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="9" selection-start="1559" selection-end="2126" vertical-scroll-proportion="-13.259259" vertical-offset="632" max-vertical-offset="1152" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="35" selection-start="41" selection-end="41" vertical-scroll-proportion="0.032258064" vertical-offset="0" max-vertical-offset="558" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/follow_up/demograph.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="67" selection-start="507" selection-end="526" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="1152" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/follow_up/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="131" selection-start="223" selection-end="303" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="2160">
-          <folding>
-            <marker date="1395904667981" expanded="true" signature="844:1055" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="924:1043" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="1127:1346" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="1214:1334" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="1694:1905" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="1773:1893" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="1977:2185" placeholder="..." />
-            <marker date="1395904667981" expanded="true" signature="2055:2173" placeholder="..." />
-          </folding>
+        <state line="111" column="9" selection-start="3029" selection-end="3319" vertical-scroll-proportion="0.0" vertical-offset="1998" max-vertical-offset="2160" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/report/contraceptive.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="11" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1080" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Region.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="385" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="504" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/PatientReport.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="296" selection-end="296" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="432">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/visit/info.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="91" selection-start="2722" selection-end="2722" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="5184">
+        <state line="53" column="59" selection-start="2843" selection-end="2843" vertical-scroll-proportion="2.3439803" vertical-offset="0" max-vertical-offset="4248" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/follow_up/contraceptive.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="21" selection-start="22" selection-end="22" vertical-scroll-proportion="-0.0" vertical-offset="18" max-vertical-offset="828" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/ReportController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="49" selection-start="1832" selection-end="1832" vertical-scroll-proportion="-6.6666665" vertical-offset="1782" max-vertical-offset="3114" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="132" column="30" selection-start="4122" selection-end="4132" vertical-scroll-proportion="0.0" vertical-offset="2376" max-vertical-offset="2682">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/visit/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/views/report/contraceptive/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="39" selection-start="417" selection-end="417" vertical-scroll-proportion="0.1" vertical-offset="272" max-vertical-offset="828">
+        <state line="37" column="136" selection-start="1715" selection-end="1715" vertical-scroll-proportion="-3.7764127" vertical-offset="2203" max-vertical-offset="3438" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="49" selection-start="2439" selection-end="2439" vertical-scroll-proportion="0.0" vertical-offset="794" max-vertical-offset="1314">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layout/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="28" selection-start="4822" selection-end="4822" vertical-scroll-proportion="0.0" vertical-offset="1728" max-vertical-offset="3024">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-5.9" vertical-offset="2478" max-vertical-offset="3168" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/patient/hiv.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="141" selection-start="293" selection-end="359" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="2106">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/ContraceptiveController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="442" column="31" selection-start="22839" selection-end="22839" vertical-scroll-proportion="0.0" vertical-offset="7956" max-vertical-offset="12384">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_04_13_042246_create_patient_report_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="38" selection-start="1030" selection-end="1030" vertical-scroll-proportion="0.31898734" vertical-offset="432" max-vertical-offset="954">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/PatientController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="13" selection-start="3793" selection-end="3804" vertical-scroll-proportion="-6.4074073" vertical-offset="1519" max-vertical-offset="6336">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/report/hiv.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="49" selection-start="5271" selection-end="5271" vertical-scroll-proportion="-2.6666667" vertical-offset="2124" max-vertical-offset="3780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/HivController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="661" column="0" selection-start="35364" selection-end="35364" vertical-scroll-proportion="0.33660933" vertical-offset="7873" max-vertical-offset="12168">
+          <folding>
+            <element signature="n#makeTable#0;n#HivController#0;n#!!top" expanded="false" />
+            <marker date="1397542160258" expanded="true" signature="28543:28590" placeholder="..." />
+            <marker date="1397542160258" expanded="true" signature="29209:29223" placeholder="..." />
+            <marker date="1397542160258" expanded="true" signature="29306:29336" placeholder="..." />
+            <marker date="1397542160258" expanded="true" signature="29407:29416" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

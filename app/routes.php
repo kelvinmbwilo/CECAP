@@ -62,7 +62,7 @@ Route::get('user/log/{id}',array('as'=>'userlog', 'uses'=>'UserController@show')
 /**
  * patient registration routes
  * working with patientController
- * @todo adding all related fields of patients categoriwise
+ *
  */
 
 //display a patient list
@@ -77,6 +77,9 @@ Route::get('patients/{id}',array('uses'=>'PatientController@show'));
 //check for a regions district...
 Route::post('patient/region_check/{id}',array('uses'=>'PatientController@check_region'));
 
+//check for a regions district...
+Route::post('patient/region_check1/{id}',array('uses'=>'PatientController@check_region1'));
+
 //making a patient follow up...
 Route::get('patient/follow_up/{id}',array('uses'=>'PatientController@followup'));
 
@@ -88,3 +91,53 @@ Route::post('patient/add',array('uses'=>'PatientController@store'));
 
 //patient registration
 Route::post('patient/delete/{id}',array('uses'=>'PatientController@destroy'));
+
+/**
+* patient registration routes
+* working with patientController
+* @todo adding all related fields of patients reports
+*/
+
+
+//displaying index page
+Route::get('reports',array('uses'=>'ReportController@index'));
+
+//displaying index page
+Route::post('reports/process',array('uses'=>'ReportController@process'));
+
+
+//display index page of contraceptive history
+Route::get('reports/contraceptive/barchat',array('uses'=>'ReportController@displayBarChart'));
+
+/**
+ * Contraceptive Reports
+ * Using ContraceptiveController
+ */
+//display index page of contraceptive history
+Route::get('reports/contraceptive',array('uses'=>'ContraceptiveController@index'));
+
+//displaying table chart
+Route::post('report/contraceptive/table',array('uses'=>'ContraceptiveController@makeTable'));
+
+//displaying bar chart
+Route::post('report/contraceptive/bar',array('uses'=>'ContraceptiveController@makeBar'));
+
+//displaying line chart
+Route::post('report/contraceptive/line',array('uses'=>'ContraceptiveController@makeLine'));
+
+/**
+ * HIV Status Reports
+ * Using HivController
+ */
+//display index page of contraceptive history
+Route::get('reports/hiv_status',array('uses'=>'HivController@index'));
+
+//displaying table chart
+Route::post('report/hiv/table',array('uses'=>'HivController@makeTable'));
+
+//displaying bar chart
+Route::post('report/hiv/bar',array('uses'=>'HivController@makeBar'));
+
+//displaying line chart
+Route::post('report/hiv/line',array('uses'=>'HivController@makeLine'));
+

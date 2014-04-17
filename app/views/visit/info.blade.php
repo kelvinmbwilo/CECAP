@@ -51,7 +51,7 @@ $first_visit = $patient->visit()->first();
                 @if($visit->contraceptive->current_status == 'yes' )
                     At Time of Visit Patient Was Currently Using Contraceptive Of Type :{{ $visit->contraceptive->current->name }}
                 @else
-                At Time of Visit This Patient Is Not Currently Using  Contraceptives
+                At Time of Visit This Patient Was Not Using Contraceptives
                 @endif
             </div>
         </div>
@@ -63,59 +63,53 @@ $first_visit = $patient->visit()->first();
     <li class="list-group-item">
         <h4>HIV</h4>
 
-        @if($first_visit->id == $visit->id)
             <div class="row">
                 <div class="col-sm-4">
-                    @if($visit->hiv->status == 'yes')
-                        HIV Status is Known
+                    @if($visit->hiv->status == 'Unknown')
+                       HIV Status Is Not Known
                     @else
-                        HIV Status Was Not Known
+                        HIV Status is {{ $visit->hiv->status }}
                     @endif
                 </div>
                 <div class="col-sm-4">
-                    @if($visit->hiv->status == 'yes')
-                    Last Test Was Done In : {{ $visit->hiv->last_test }}
+                    @if($visit->hiv->status != 'Unknown')
+                    Last Test Was Done In : {{ $visit->hiv->year_of_last_test }}
                     @else
 
                     @endif
                 </div>
                 <div class="col-sm-4">
-                    @if($visit->hiv->status == 'yes')
-                    HIV Status : {{ $visit->hiv->result }}
-                    @else
 
-                    @endif
                 </div>
             </div>
-            @if($visit->hiv->result == 'Positive')
+            @if($visit->hiv->status == 'Positive')
                 <div class="row">
                     <div class="col-sm-4">
-                        Years Since Diagnosis : {{ $visit->hiv->year_of_first_diagnosis }}
+                        Years Since Diagnosis : {{ $visit->hiv->year_since_first_diagnosis }}
                     </div>
                     <div class="col-sm-4">
                         @if($visit->hiv->art_status == 'yes' )
                         Patient  Using ART
                         @else
-                        Patient Not Using ART
+                        Patient is Not Using ART
                         @endif
                     </div>
                     <div class="col-sm-4">
                         CD4 Count: {{ $visit->hiv->prev_cd4_count }}
-
                     </div>
                 </div>
-            @else
+            @endif
                 <div class="row">
                     <div class="col-sm-4">
                         @if($visit->hiv->pitc_agreed == 'yes' )
-                            HIV Test Was Conducted Again
+                            PITC was Offered And Agreed
                         @else
-
+                            PTIC was Not Oferred Because {{ $visit->hiv->unknown_reason }}
                         @endif
                     </div>
                     <div class="col-sm-4">
                         @if($visit->hiv->pitc_agreed == 'yes' )
-                        Test Result : {{ $visit->hiv->pitc_result }}
+                        PITC Test Result : {{ $visit->hiv->pitc_result }}
                         @else
 
                         @endif
@@ -123,61 +117,15 @@ $first_visit = $patient->visit()->first();
                     <div class="col-sm-4">
                         @if($visit->hiv->pitc_result == 'Positive' )
                         CD4 Count : {{ $visit->hiv->pitc_cd4_count }}
-                        @else
+                        @endif
 
+                        @if($visit->hiv->current_art_status == 'yes' )
+                        ART Was Offered
+                        @else
+                        ART Was Not Offered
                         @endif
                     </div>
                 </div>
-            @endif
-
-<!--        second visit and later visits-->
-        @else
-            <div class="row">
-                <div class="col-sm-4">
-                    @if($visit->hiv->status == 'yes')
-                    HIV Status is Known
-                    @else
-                    HIV Status Was Not Known
-                    @endif
-                </div>
-                <div class="col-sm-4">
-                    @if($visit->hiv->pitc_offered == 'yes')
-                        PITC Was Offered &nbsp;&nbsp;&nbsp;
-                        @if($visit->hiv->pitc_agreed == 'yes')
-                            And Agreed
-                        @else
-                            But Declined By Patient
-                        @endif
-                    @else
-                        PITC Was Not Offered
-                    @endif
-                </div>
-                <div class="col-sm-4">
-                    @if($visit->hiv->pitc_offered == 'yes')
-                        PITC Result {{ $visit->hiv->pitc_result }}
-                    @else
-
-                    @endif
-                </div>
-            </div>
-            @if($visit->hiv->pitc_result == 'Positive')
-            <div class="row">
-                <div class="col-sm-6">
-                    @if($visit->hiv->art_status == 'yes' )
-                    Patient  Using ART
-                    @else
-                    Patient Not Using ART
-                    @endif
-                </div>
-                <div class="col-sm-6">
-                    CD4 Count: {{ $visit->hiv->prev_cd4_count }}
-                </div>
-            </div>
-            @else
-
-            @endif
-
-        @endif
 
     </li>
 <!--    Via counceling-->

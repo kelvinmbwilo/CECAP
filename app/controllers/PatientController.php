@@ -36,7 +36,7 @@ class PatientController extends \BaseController {
             "middle_name"   => Input::get("middlename"),
             "last_name"     => Input::get("lastname"),
             "birth_date"    => Input::get("dob"),
-            "hospital_id"    => "somenumber"
+            "hospital_id"    => Input::get("hosp_no")
         ));
 
         //adding patient visit info
@@ -83,18 +83,19 @@ class PatientController extends \BaseController {
 
         //adding HIV status
         HivStatus::create(array(
-            "patient_id"                => $patient->id,
-            "visit_id"                  => $visit->id,
-            "status"                    =>(Input::has("hiv_status"))?Input::get("hiv_status"):"",
-            "result"                    =>(Input::has("past_hiv_result"))?Input::get("past_hiv_result"):"",
-            "year_of_first_diagnosis"   =>(Input::has("year_since_diagnosis"))?Input::get("year_since_diagnosis"):"",
-            "last_test"                 =>(Input::has("last_test"))?Input::get("last_test"):"",
-            "art_status"                =>(Input::has("art_status"))?Input::get("art_status"):"",
-            "pitc_offered"              =>(Input::has("test_again"))?"yes":"no",
-            "pitc_agreed"               =>(Input::has("test_again"))?Input::get("test_again"):"",
-            "pitc_result"               =>(Input::has("current_test_result"))?Input::get("current_test_result"):"",
-            "pitc_cd4_count"            =>(Input::has("current_cd4"))?Input::get("current_cd4"):"",
-            "prev_cd4_count"            =>(Input::has("prev_cd4"))?Input::get("prev_cd4"):"",
+            "patient_id"                    => $patient->id,
+            "visit_id"                      => $visit->id,
+            "status"                        =>(Input::has("hiv_status"))?Input::get("hiv_status"):"",
+            "unknown_reason"                =>(Input::has("unknown_reason"))?Input::get("unknown_reason"):"",
+            "years_since_first_diagnosis"   =>(Input::has("year_since_diagnosis"))?Input::get("year_since_diagnosis"):"",
+            "year_of_last_test"             =>(Input::has("last_test"))?Input::get("last_test"):"",
+            "art_status"                    =>(Input::has("art_status"))?Input::get("art_status"):"",
+            "current_art_status"            =>(Input::has("current_art_status"))?Input::get("current_art_status"):"",
+            "pitc_offered"                  =>(Input::get("test_again") == "yes")?"yes":"no",
+            "pitc_agreed"                   =>(Input::has("test_again"))?Input::get("test_again"):"",
+            "pitc_result"                   =>(Input::has("current_test_result"))?Input::get("current_test_result"):"",
+            "pitc_cd4_count"                =>(Input::has("current_cd4"))?Input::get("current_cd4"):"",
+            "prev_cd4_count"                =>(Input::has("prev_cd4"))?Input::get("prev_cd4"):"",
         ));
 
         //adding VIA Status
@@ -133,6 +134,30 @@ class PatientController extends \BaseController {
             "cancer_id"         => (Input::has("cancer"))?Input::get("cancer"):"",
             "differentiation"   => (Input::has("differentiation"))?Input::get("differentiation"):""
         ));
+
+        $report = PatientReport::create(array(
+            "patient_id"                => $patient->id,
+            "bitrh_date"                => Input::get("dob"),
+            "region"                    => Input::get("region"),
+            "district"                  => Input::get("district"),
+            "parity"                    => Input::get("parity"),
+            "number_of_pregnancy"       => Input::get("number_of_preg"),
+            "menarche"                  => Input::get("menarche"),
+            "age_at_sexual_debut"       => Input::get("start_sex_age"),
+            "marital_status"            => Input::get("marital"),
+            "first_marriage"            => Input::get("first_marriage"),
+            "partners"                  => Input::get("sexual_partner"),
+            "partners_partner"          => Input::get("partner_sexual_partner"),
+            "contraceptive_status"      => Input::get("current_on_contra"),
+            "contraceptive_type"        => (Input::has("current_contra"))?Input::get("current_contra"):"",
+            "HIV_status"                =>(Input::has("hiv_status"))?Input::get("hiv_status"):"",
+        ));
+        if(Input::has("current_cd4")){
+            $report->cd4_count = Input::get("current_cd4");
+        }elseif(Input::has("prev_cd4")){
+            $report->cd4_count = Input::has("prev_cd4");
+        }
+        $report->save();
 	}
 
 
@@ -182,7 +207,21 @@ class PatientController extends \BaseController {
 	}
 
     public function check_region($id){
-        return Form::select('district',Region::find($id)->district()->lists('district','id'),'',array('class'=>'form-control','required'=>'requiered'));
+        if($id == "all"){
+            return Form::select('district',array('all'=>'all')+District::lists('district','id'),'',array('class'=>'form-control','required'=>'requiered'));
+
+        }else{
+            return Form::select('district',Region::find($id)->district()->lists('district','id'),'',array('class'=>'form-control','required'=>'requiered'));
+        }
+    }
+
+    public function check_region1($id){
+        if($id == "all"){
+            return Form::select('district',array('all'=>'all')+District::lists('district','id'),'',array('class'=>'form-control','required'=>'requiered'));
+
+        }else{
+            return Form::select('district',array('all'=>'all')+Region::find($id)->district()->lists('district','id'),'',array('class'=>'form-control','required'=>'requiered'));
+        }
     }
 
     public function followup($id){
@@ -237,13 +276,16 @@ class PatientController extends \BaseController {
             "patient_id"                => $patient->id,
             "visit_id"                  => $visit->id,
             "status"                    =>(Input::has("hiv_status"))?Input::get("hiv_status"):"",
+            "unknown_reason"            =>(Input::has("unknown_reason"))?Input::get("unknown_reason"):"",
+            "year_of_last_test"         =>(Input::has("last_test"))?Input::get("last_test"):"",
             "art_status"                =>(Input::has("art_status"))?Input::get("art_status"):"",
-            "pitc_offered"              =>(Input::has("ptic_stat"))?Input::get("ptic_stat"):"no",
-            "pitc_agreed"               =>(Input::has("ptic_agree"))?Input::get("ptic_agree"):"",
+            "current_art_status"        =>(Input::has("current_art_status"))?Input::get("current_art_status"):"",
+            "pitc_offered"              =>(Input::get("test_again") == "yes")?"yes":"no",
+            "pitc_agreed"               =>(Input::has("test_again"))?Input::get("test_again"):"",
             "pitc_result"               =>(Input::has("current_test_result"))?Input::get("current_test_result"):"",
-            "pitc_cd4_count"            =>(Input::has("cd4_stat"))?Input::get("cd4_stat"):"",
+            "pitc_cd4_count"            =>(Input::has("current_cd4"))?Input::get("current_cd4"):"",
+            "prev_cd4_count"            =>(Input::has("prev_cd4"))?Input::get("prev_cd4"):"",
         ));
-
         //adding VIA Status
         ViaStatus::create(array(
             "patient_id"                => $patient->id,
@@ -280,5 +322,26 @@ class PatientController extends \BaseController {
             "cancer_id"         => (Input::has("cancer"))?Input::get("cancer"):"",
             "differentiation"   => (Input::has("differentiation"))?Input::get("differentiation"):""
         ));
+
+        $report = PatientReport::where('patient_id',$patient->id)->first();
+        $report->region = Input::get("region");
+        $report->district = Input::get("district");
+        $report->number_of_pregnancy = Input::get("number_of_preg");
+        $report->marital_status = Input::get("marital");
+        $report->first_marriage = Input::get("first_marriage");
+        $report->partners = Input::get("sexual_partner");
+        $report->partners_partner = Input::get("partner_sexual_partner");
+        $report->contraceptive_status = Input::get("current_on_contra");
+        if(Input::has("current_contra")){
+            $report->contraceptive_type = Input::get("current_contra");
+
+        }if(Input::has("hiv_status")){
+            $report->HIV_status = Input::get("hiv_status");
+        }if(Input::has("current_cd4")){
+            $report->cd4_count = Input::get("current_cd4");
+        }elseif(Input::has("prev_cd4")){
+            $report->cd4_count = Input::has("prev_cd4");
+        }
+        $report->save();
     }
 }

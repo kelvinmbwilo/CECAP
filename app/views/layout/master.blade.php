@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 @if(Auth::guest())
 {{  Redirect::to("/")  }}
-@endif
+@else
 <html>
 <head>
     <title>Dashboard | CECAP</title>
@@ -29,6 +29,12 @@
     {{ HTML::script("js/html5shiv.js") }}
     {{ HTML::script("js/respond.min.js") }}
     <![endif]-->
+    <style>
+        h3{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body class="bootstrap-admin-with-small-navbar">
 <!-- small navbar -->
@@ -86,24 +92,14 @@
                         <a href="#" class="dropdown-toggle" data-hover="dropdown">Reports <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li role="presentation" class="dropdown-header">Reports Menu</li>
-                            <li><a href="#">Generate Report</a></li>
-                            <li><a href="#">View Standard Reports</a></li>
+                            <li><a href="{{ url('reports') }}">General Report</a></li>
+                            <li><a href="{{ url('reports/contraceptive') }}">Contraceptive History</a></li>
+                            <li><a href="{{ url('reports/hiv_status') }}">HIV Status</a></li>
+                            <li><a href="#">View Saved Reports</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ url('users') }}">Users</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown">Settings<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li role="presentation" class="dropdown-header">Dropdown header</li>
-                            <li><a href="#">action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="presentation" class="divider"></li>
-                            <li role="presentation" class="dropdown-header">Dropdown header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
@@ -136,7 +132,7 @@
         <div class="row">
             <footer role="contentinfo">
                 <p class="left">Cervical Cancer Prevention Program (CECAP)</p>
-                <p class="right">&copy; {{ date("Y") }}<a href="http://www.meritoo.pl" target="_blank"> Softmed LTD</a></p>
+                <p class="right">&copy; {{ date("Y") }}<a href="#" target="_blank"> Softmed LTD</a></p>
             </footer>
         </div>
     </div>
@@ -150,6 +146,8 @@
 {{ HTML::script("jqueryui/js/jquery-ui-1.10.4.custom.js") }}
 {{ HTML::script("js/twitter-bootstrap-hover-dropdown.min.js") }}
 {{ HTML::script("js/bootstrap-admin-theme-change-size.js") }}
+{{ HTML::script("Highcharts/js/highcharts.js") }}
+{{ HTML::script("Highcharts/js/themes/gray.js") }}
 {{ HTML::script("vendors/easypiechart/jquery.easy-pie-chart.js") }}
 {{ HTML::script("vendors/datatables/js/jquery.dataTables.min.js") }}
 {{ HTML::script("js/DT_bootstrap.js") }}
@@ -162,3 +160,4 @@
 </script>
 </body>
 </html>
+@endif

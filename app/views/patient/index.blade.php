@@ -15,6 +15,8 @@
 
 {{ Form::open(array("url"=>url('patient/add'),"class"=>"form-horizontal","id"=>'FileUploader')) }}
 
+    Hosptal Number {{ Form::text('hosp_no','',array('class'=>'form-control col-sm-6','placeholder'=>'Hosptal Number','required'=>'required')) }}
+
 <div class="row">
     <div class="col-md-6" style="padding-left: 0px;padding-right: 5px">
         <h3 class="">Demographic</h3>
@@ -83,7 +85,7 @@
 </div>
 <div id="output"></div>
 <div class='col-sm-12 form-group text-center'>
-    {{ Form::submit('Add User',array('class'=>'btn btn-primary','id'=>'submitqn')) }}
+    {{ Form::submit('Register',array('class'=>'btn btn-primary','id'=>'submitqn')) }}
     {{ Form::reset('Reset',array('class'=>'btn btn-warning','id'=>'submitqn')) }}
 </div>
 {{ Form::close() }}

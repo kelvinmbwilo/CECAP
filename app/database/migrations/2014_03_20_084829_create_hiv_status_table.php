@@ -18,10 +18,11 @@ class CreateHivStatusTable extends Migration {
             $table->integer("patient_id");
             $table->integer("visit_id");
             $table->string("status");
-            $table->string("result");
-            $table->string("last_test");
-            $table->string("year_of_first_diagnosis");
+            $table->string("unknown_reason");
+            $table->string("year_of_last_test");
+            $table->string("years_since_first_diagnosis");
             $table->string("art_status");
+            $table->string("current_art_status");
             $table->string("pitc_offered");
             $table->string("pitc_agreed");
             $table->string("pitc_result");

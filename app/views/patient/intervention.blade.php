@@ -8,10 +8,10 @@
                     Intervention done<br>{{ Form::select('intervention',InterventionResult::all()->lists('name','id'),'',array('class'=>'form-control','required'=>'requiered')) }}
                 </div>
                 <div class='col-sm-4'>
-                    Specific indication <br>{{ Form::select('indicator',InterventionIndicators::all()->lists('name','id'),'',array('class'=>'form-control','required'=>'requiered')) }}
+                    Reasons <br>{{ Form::select('indicator',InterventionIndicators::all()->lists('name','id'),'',array('class'=>'form-control','required'=>'requiered')) }}
                 </div>
                 <div class='col-sm-4' id="via_reason">
-                    Type of differentiation<br> {{ Form::select('differentiation',array("Highly differentiated"=>"Highly differentiated","Moderately differentiated"=>"Moderately differentiated","Low differentiation"=>"Low differentiation"),'',array('class'=>'form-control','required'=>'requiered')) }}
+                    Tumor Histological Type<br> {{ Form::select('differentiation',array("Highly differentiated"=>"Highly differentiated","Moderately differentiated"=>"Moderately differentiated","Low differentiation"=>"Low differentiation"),'',array('class'=>'form-control','required'=>'requiered')) }}
                 </div>
 
             </div>
