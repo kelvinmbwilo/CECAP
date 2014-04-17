@@ -95,6 +95,9 @@
                             <li><a href="{{ url('reports') }}">General Report</a></li>
                             <li><a href="{{ url('reports/contraceptive') }}">Contraceptive History</a></li>
                             <li><a href="{{ url('reports/hiv_status') }}">HIV Status</a></li>
+                            <li><a href="{{ url('reports/colposcopy') }}">Colposcopy</a></li>
+                            <li><a href="{{ url('reports/pap_smear') }}">Pap Smear</a></li>
+                            <li><a href="{{ url('reports/via') }}">VIA</a></li>
                             <li><a href="#">View Saved Reports</a></li>
                         </ul>
                     </li>
@@ -147,6 +150,7 @@
 {{ HTML::script("js/twitter-bootstrap-hover-dropdown.min.js") }}
 {{ HTML::script("js/bootstrap-admin-theme-change-size.js") }}
 {{ HTML::script("Highcharts/js/highcharts.js") }}
+{{ HTML::script("Highcharts/js/modules/exporting.js") }}
 {{ HTML::script("Highcharts/js/themes/gray.js") }}
 {{ HTML::script("vendors/easypiechart/jquery.easy-pie-chart.js") }}
 {{ HTML::script("vendors/datatables/js/jquery.dataTables.min.js") }}

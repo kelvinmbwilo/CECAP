@@ -141,3 +141,51 @@ Route::post('report/hiv/bar',array('uses'=>'HivController@makeBar'));
 //displaying line chart
 Route::post('report/hiv/line',array('uses'=>'HivController@makeLine'));
 
+/**
+ * Colposcopy Status Reports
+ * Using ColposcopyController
+ */
+//display index page of contraceptive history
+Route::get('reports/colposcopy',array('uses'=>'ColposcopyController@index'));
+
+//displaying table chart
+Route::post('report/colposcopy/table',array('uses'=>'ColposcopyController@makeTable'));
+
+//displaying bar chart
+Route::post('report/colposcopy/bar',array('uses'=>'ColposcopyController@makeBar'));
+
+//displaying line chart
+Route::post('report/colposcopy/line',array('uses'=>'ColposcopyController@makeLine'));
+
+/**
+ * pap_smear Status Reports
+ * Using PapSmearController
+ */
+//display index page of contraceptive history
+Route::get('reports/pap_smear',array('uses'=>'PapSmearController@index'));
+
+//displaying table chart
+Route::post('report/pap_smear/table',array('uses'=>'PapSmearController@makeTable'));
+
+//displaying bar chart
+Route::post('report/pap_smear/bar',array('uses'=>'PapSmearController@makeBar'));
+
+//displaying line chart
+Route::post('report/pap_smear/line',array('uses'=>'PapSmearController@makeLine'));
+
+/**
+ * VIA Status Reports
+ * Using VIAController
+ */
+//display index page of contraceptive history
+Route::get('reports/via',array('uses'=>'VIAController@index'));
+
+//displaying table chart
+Route::post('report/via/table',array('uses'=>'VIAController@makeTable'));
+
+//displaying bar chart
+Route::post('report/via/bar',array('uses'=>'VIAController@makeBar'));
+
+//displaying line chart
+Route::post('report/via/line',array('uses'=>'VIAController@makeLine'));
+

@@ -1,6 +1,6 @@
 <?php
 
-class HivController extends \BaseController {
+class VIAController extends \BaseController {
 
     /**
      * Display a listing of the resource.
@@ -9,7 +9,7 @@ class HivController extends \BaseController {
      */
     public function index()
     {
-        return View::make("report.hiv");
+        return View::make("report.via");
     }
 
     public function processQuery($patientquery,$visitquery){
@@ -25,15 +25,15 @@ class HivController extends \BaseController {
         $title = "";$pat = false;
         $row = array();
         $column = array();
-        if(Input::get("show") == "HIV Status"){
-            $columntype = array('Unknown'=>'Unknown','Negative'=>'Negative','Positive'=>'Positive');
+        if(Input::get("show") == "VIA Counseling Status"){
+            $columntype = array("yes" => "Via Counseling Done","no" => "Via Counseling Not Done");
 
-        }elseif(Input::get("show") == "CD4 Count"){
-            $columcd4 = array('0'=>'0-200','200'=>'200-400','400'=>'400-600','600'=>'600-1000','1000'=>'1000-1500');
-        }elseif(Input::get("show") == "Test  Results"){
-            $columresult = array('yes'=>'Tests','Positive'=>'Positive','Negative'=>'Negative');
-        }elseif(Input::get("show") == "Decline Reason"){
-            $columreason = array('Counselling not offered'=>'Counselling not offered','Patient declined test'=>'Patient declined test','Test kits shortage'=>'Test kits shortage','Other'=>'Other');
+        }elseif(Input::get("show") == "VIA Test Status"){
+            $columnhistory = array('yes'=>'VIA Test Done','no'=>'VIA Test Not Done');
+        }elseif(Input::get("show") == "Test Results"){
+            $columnhistory1 = array('Normal cervix (Negative)'=>'Normal cervix (Negative)','Abnormal cervix (Positive)'=>'Abnormal cervix (Positive)');
+        }elseif(Input::get("show") == "Reason"){
+            $columnhistory2 = array('SCJ not seen'=>'SCJ not seen','Heavy menses'=>'Heavy menses','Suspicious of cancer'=>'Suspicious of cancer','Massive endocervical discharge (cervicitis)'=>'Massive endocervical discharge (cervicitis)','pregnancy'=>'pregnancy');
         }
         if(Input::get("vertical") == "Patients"){
             $pat = true;
@@ -54,50 +54,54 @@ class HivController extends \BaseController {
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::where('HIV_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column[$value1][] = $que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::where('status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column[$value1][] = $que->count();
                         }
                     }
                     $title = Input::get('vertical')." ". $query[2]." ".Input::get('year');;
-                }elseif(isset($columcd4)){
-                    foreach($columcd4 as $key1=>$value1){
-                        $arr = explode("-",$value1);
+                }elseif(isset($columnhistory)){
+                    foreach($columnhistory as $key1=>$value1){
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::whereBetween('cd4_count',array($arr[0],$arr[1]))->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column[$value1][] = $que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::whereBetween('pitc_cd4',array($arr[0],$arr[1]))->get()->lists('visit_id')+ContraceptiveHistory::where('current_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column[$value1][] = $que->count();
                         }
                     }
                     $title = Input::get('vertical')." ". $query[2]." ".Input::get('year');
-                }
-                 elseif(isset($columresult)){
-                     $count = 0;
-                    foreach($columresult as $key1=>$value1){
+                }elseif(isset($columnhistory1)){
+                    foreach($columnhistory1 as $key1=>$value1){
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                            ($count == 0)?
-                                $que = $query[1]->whereIn('id', HivStatus::where('pitc_agreed',"yes")->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to)):
-                                $que = $query[1]->whereIn('id', HivStatus::where('pitc_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column[$value1][] = $que->count();
-                        $count++;
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column[$value1][] = $que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column[$value1][] = $que->count();
+                        }
                     }
                     $title = Input::get('vertical')." ". $query[2]." ".Input::get('year');
-                }elseif(isset($columreason)){
-                    foreach($columreason as $key1=>$value1){
+                }elseif(isset($columnhistory2)){
+                    foreach($columnhistory2 as $key1=>$value1){
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[1]->whereIn('id', HivStatus::where('unknown_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column[$value1][] = $que->count();
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column[$value1][] = $que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column[$value1][] = $que->count();
+                        }
                     }
                     $title = Input::get('vertical')." ". $query[2]." ".Input::get('year');
                 }
@@ -116,49 +120,54 @@ class HivController extends \BaseController {
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::where('HIV_Status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column[$value1][] = $que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::where('status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column[$value1][] = $que->count();
                         }
                     }
                     $title = Input::get('vertical')." ". $query[2]." ".Input::get('start')." - ".Input::get('end');
-                }elseif(isset($columcd4)){
-                    foreach($columcd4 as $key1=>$value1){
-                        $arr = explode("-",$value1);
+                }elseif(isset($columnhistory)){
+                    foreach($columnhistory as $key1=>$value1){
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::whereBetween('cd4_count',array($arr[0],$arr[1]))->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column[$value1][] = $que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::where('status',$key1)->get()->lists('visit_id')+ContraceptiveHistory::where('current_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column[$value1][] = $que->count();
                         }
                     }
                     $title = Input::get('vertical')." ". $query[2]." ".Input::get('start')." ".Input::get('end');
-                }elseif(isset($columresult)){
-                    $count = 0;
-                    foreach($columresult as $key1=>$value1){
+                }elseif(isset($columnhistory1)){
+                    foreach($columnhistory1 as $key1=>$value1){
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        ($count == 0)?
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_agreed',"yes")->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to)):
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column[$value1][] = $que->count();
-                        $count++;
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column[$value1][] = $que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column[$value1][] = $que->count();
+                        }
                     }
                     $title = Input::get('vertical')." ". $query[2]." ".Input::get('start')." ".Input::get('end');
-                }elseif(isset($columreason)){
-                    foreach($columreason as $key1=>$value1){
+                }elseif(isset($columnhistory2)){
+                    foreach($columnhistory2 as $key1=>$value1){
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[1]->whereIn('id', HivStatus::where('unknown_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column[$value1][] = $que->count();
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column[$value1][] = $que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column[$value1][] = $que->count();
+                        }
                     }
                     $title = Input::get('vertical')." ". $query[2]." ".Input::get('start')." ".Input::get('end');
                 }
@@ -195,47 +204,40 @@ class HivController extends \BaseController {
                 $end = date("Y",$timerange1)."-01-01";
                 if(isset($columntype)){
                     foreach($columntype as $key1=>$value1){
-
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[0]->whereIn('id', PatientReport::where('HIV_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column[$value1][] = $que->count();
                     }
                     $title = Input::get('vertical')." Age Range ". $query[2];
-                }elseif(isset($columcd4)){
-                    foreach($columcd4 as $key1=>$value1){
-                        $arr = explode("-",$value1);
+                }elseif(isset($columnhistory)){
+                    foreach($columnhistory as $key1=>$value1){
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[0]->whereIn('id', PatientReport::whereBetween('cd4_count',array($arr[0],$arr[1]))->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column[$value1][] = $que->count();
                     }
                     $title = Input::get('vertical')." Age Range ". $query[2];
-                }elseif(isset($columresult)){
-                    $count = 0;
-                    foreach($columresult as $key1=>$value1){
+                }elseif(isset($columnhistory1)){
+                    foreach($columnhistory1 as $key1=>$value1){
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        ($count == 0)?
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_agreed',"yes")->get()->lists('visit_id')+array('0'))->whereIn('patient_id',Patient::whereBetween('birth_date',array($end,$start))->get()->lists('id')+array('0')):
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_result',$key1)->get()->lists('visit_id')+array('0'))->whereIn('patient_id',Patient::whereBetween('birth_date',array($end,$start))->get()->lists('id')+array('0'));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column[$value1][] = $que->count();
-                        $count++;
                     }
-                    $title = Input::get('vertical')." ". $query[2];
-                }
-                elseif(isset($columreason)){
-                    foreach($columreason as $key1=>$value1){
+                    $title = Input::get('vertical')." Age Range ". $query[2];
+                }elseif(isset($columnhistory2)){
+                    foreach($columnhistory2 as $key1=>$value1){
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[1]->whereIn('id', HivStatus::where('unknown_reason',$key1)->get()->lists('visit_id')+array('0'))->whereIn('patient_id',Patient::whereBetween('birth_date',array($end,$start))->get()->lists('id')+array('0'));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column[$value1][] = $que->count();
                     }
-                    $title = Input::get('vertical')." ". $query[2];
+                    $title = Input::get('vertical')." Age Range ". $query[2];
                 }
                 $k=$i;
             }
@@ -273,15 +275,15 @@ class HivController extends \BaseController {
         $title = "";$pat = false;
         $row = "categories: [";
         $column = "";
-        if(Input::get("show") == "HIV Status"){
-            $columntype = array('Unknown'=>'Unknown','Negative'=>'Negative','Positive'=>'Positive');
+        if(Input::get("show") == "VIA Counseling Status"){
+            $columntype = array("yes" => "Via Counseling Done","no" => "Via Counseling Not Done");
 
-        }elseif(Input::get("show") == "CD4 Count"){
-            $columcd4 = array('0'=>'0-200','200'=>'200-400','400'=>'400-600','600'=>'600-1000','1000'=>'1000-1500');
-        }elseif(Input::get("show") == "Test  Results"){
-            $columresult = array('yes'=>'Tests','Positive'=>'Positive','Negative'=>'Negative');
-        }elseif(Input::get("show") == "Decline Reason"){
-            $columreason = array('Counselling not offered'=>'Counselling not offered','Patient declined test'=>'Patient declined test','Test kits shortage'=>'Test kits shortage','Other'=>'Other');
+        }elseif(Input::get("show") == "VIA Test Status"){
+            $columnhistory = array('yes'=>'VIA Test Done','no'=>'VIA Test Not Done');
+        }elseif(Input::get("show") == "Test Results"){
+            $columnhistory1 = array('Normal cervix (Negative)'=>'Normal cervix (Negative)','Abnormal cervix (Positive)'=>'Abnormal cervix (Positive)');
+        }elseif(Input::get("show") == "Reason"){
+            $columnhistory2 = array('SCJ not seen'=>'SCJ not seen','Heavy menses'=>'Heavy menses','Suspicious of cancer'=>'Suspicious of cancer','Massive endocervical discharge (cervicitis)'=>'Massive endocervical discharge (cervicitis)','pregnancy'=>'pregnancy');
         }
         if(Input::get("vertical") == "Patients"){
             $pat = true;
@@ -309,10 +311,10 @@ class HivController extends \BaseController {
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::where('HIV_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::where('status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }
                         $i++;
@@ -320,10 +322,8 @@ class HivController extends \BaseController {
                     $column .= ($col < count($columntype))?"]},":"]}";
                     $col++;
                 }
-                $title = Input::get('vertical')." ". $query[2]." ".Input::get('Year');
-            }elseif(isset($columcd4)){
-                foreach($columcd4 as $key1=>$value1){
-                    $arr = explode("-",$value1);
+            }elseif(isset($columnhistory)){
+                foreach($columnhistory as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
                     $i = 1;
                     foreach($row1 as $key => $value){
@@ -333,20 +333,19 @@ class HivController extends \BaseController {
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::whereBetween('cd4_count',array($arr[0],$arr[1]))->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::whereBetween('pitc_cd4',array($arr[0],$arr[1]))->get()->lists('visit_id')+ContraceptiveHistory::where('current_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }
                         $i++;
                     }
-                    $column .= ($col < count($columcd4))?"]},":"]}";
+                    $column .= ($col < count($columnhistory))?"]},":"]}";
                     $col++;
                 }
-            }elseif(isset($columresult)){
-                $count = 0;
-                foreach($columresult as $key1=>$value1){
+            }elseif(isset($columnhistory1)){
+                foreach($columnhistory1 as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
                     $i = 1;
                     foreach($row1 as $key => $value){
@@ -355,43 +354,42 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        ($count == 0)?
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_agreed',"yes")->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to)):
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column.= ($i < count($row1))?$que->count().",":$que->count();
-                        $i++;
-                  }
-                    $count++;
-                    $column .= ($col < count($columresult))?"]},":"]}";
-                    $col++;
-                }
-
-
-                $title = Input::get('vertical')." ". $query[2]." ".Input::get('Year');
-            }
-
-            elseif(isset($columreason)){
-                foreach($columreason as $key1=>$value1){
-                    $column.= "{ name: '".$value1."', data: [ ";
-                    $i = 1;
-                    foreach($row1 as $key => $value){
-                        $from = Input::get('year')."-".$key."-01";
-                        $to = Input::get('year')."-".$key."-31";
-                        $patientquery = DB::table('patient');
-                        $visitquery   = DB::table('visit');
-                        $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[1]->whereIn('id', HivStatus::where('unknown_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column.= ($i < count($row1))?$que->count().",":$que->count();
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }
                         $i++;
                     }
-                    $column .= ($col < count($columreason))?"]},":"]}";
+                    $column .= ($col < count($columnhistory1))?"]},":"]}";
                     $col++;
                 }
-
-
-                $title = Input::get('vertical')." ". $query[2]." ".Input::get('Year');
+            }elseif(isset($columnhistory2)){
+                foreach($columnhistory2 as $key1=>$value1){
+                    $column.= "{ name: '".$value1."', data: [ ";
+                    $i = 1;
+                    foreach($row1 as $key => $value){
+                        $from = Input::get('year')."-".$key."-01";
+                        $to = Input::get('year')."-".$key."-31";
+                        $patientquery = DB::table('patient');
+                        $visitquery   = DB::table('visit');
+                        $query = $this->processQuery($patientquery,$visitquery);
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }
+                        $i++;
+                    }
+                    $column .= ($col < count($columnhistory2))?"]},":"]}";
+                    $col++;
+                }
             }
-
+            $title = Input::get('vertical')." ". $query[2]." ".Input::get('Year');
         }
         elseif(Input::get("horizontal") == "Years"){
             $row1 = range(Input::get('start'),Input::get('end'));
@@ -412,10 +410,10 @@ class HivController extends \BaseController {
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::where('HIV_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::where('status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }
                         $i++;
@@ -423,9 +421,8 @@ class HivController extends \BaseController {
                     $column .= ($col < count($columntype))?"]},":"]}";
                     $col++;
                 }
-            }elseif(isset($columcd4)){
-                foreach($columcd4 as $key1=>$value1){
-                    $arr = explode("-",$value1);
+            }elseif(isset($columnhistory)){
+                foreach($columnhistory as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
                     $i = 1;
                     foreach($row1 as $value){
@@ -435,20 +432,19 @@ class HivController extends \BaseController {
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::whereBetween('cd4_count',array($arr[0],$arr[1]))->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::whereBetween('pitc_cd4',array($arr[0],$arr[1]))->get()->lists('visit_id')+ContraceptiveHistory::where('current_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }
                         $i++;
                     }
-                    $column .= ($col < count($columcd4))?"]},":"]}";
+                    $column .= ($col < count($columnhistory))?"]},":"]}";
                     $col++;
                 }
-            }elseif(isset($columresult)){
-                $count = 0;
-                foreach($columresult as $key1=>$value1){
+            }elseif(isset($columnhistory1)){
+                foreach($columnhistory1 as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
                     $i = 1;
                     foreach($row1 as $value){
@@ -457,20 +453,20 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        ($count == 0)?
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_agreed',"yes")->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to)):
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column.= ($i < count($row1))?$que->count().",":$que->count();
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }
                         $i++;
                     }
-                    $count++;
-                    $column .= ($col < count($columresult))?"]},":"]}";
+                    $column .= ($col < count($columnhistory1))?"]},":"]}";
                     $col++;
                 }
-
-            }elseif(isset($columreason)){
-                $count = 0;
-                foreach($columreason as $key1=>$value1){
+            }elseif(isset($columnhistory2)){
+                foreach($columnhistory2 as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
                     $i = 1;
                     foreach($row1 as $value){
@@ -479,15 +475,18 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[1]->whereIn('id', HivStatus::where('unknown_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column.= ($i < count($row1))?$que->count().",":$que->count();
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }
                         $i++;
                     }
-                    $count++;
-                    $column .= ($col < count($columreason))?"]},":"]}";
+                    $column .= ($col < count($columnhistory2))?"]},":"]}";
                     $col++;
                 }
-
             }
             $title = Input::get('vertical')." ". $query[2]." ".Input::get('Year');
         }
@@ -530,16 +529,15 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[0]->whereIn('id', PatientReport::where('HIV_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column .= ($i < $limit)?$que->count().",":$que->count();
                         $k=$i;
                     }
                     $column .= ($col < count($columntype))?"]},":"]}";
                     $col++;
                 }
-            }elseif(isset($columcd4)){
-                foreach($columcd4 as $key1=>$value1){
-                    $arr = explode("-",$value1);
+            }elseif(isset($columnhistory)){
+                foreach($columnhistory as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
 
                     for($i=$range;$i<=$limit;$i+=$range){
@@ -555,17 +553,17 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[0]->whereIn('id', PatientReport::whereBetween('cd4_count',array($arr[0],$arr[1]))->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column .= ($i < $limit)?$que->count().",":$que->count();
                         $k=$i;
                     }
-                    $column .= ($col < count($columcd4))?"]},":"]}";
+                    $column .= ($col < count($columnhistory))?"]},":"]}";
                     $col++;
                 }
-            }elseif(isset($columresult)){
-                $count = 0;
-                foreach($columresult as $key1=>$value1){
+            }elseif(isset($columnhistory1)){
+                foreach($columnhistory1 as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
+
                     for($i=$range;$i<=$limit;$i+=$range){
                         //start year
                         $time = $k*365*24*3600;
@@ -579,21 +577,17 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        ($count == 0)?
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_agreed',"yes")->get()->lists('visit_id')+array('0'))->whereIn('patient_id',Patient::whereBetween('birth_date',array($end,$start))->get()->lists('id')+array('0')):
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_result',$key1)->get()->lists('visit_id')+array('0'))->whereIn('patient_id',Patient::whereBetween('birth_date',array($end,$start))->get()->lists('id')+array('0'));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column .= ($i < $limit)?$que->count().",":$que->count();
                         $k=$i;
                     }
-                    $count++;
-                    $column .= ($col < count($columresult))?"]},":"]}";
+                    $column .= ($col < count($columnhistory1))?"]},":"]}";
                     $col++;
                 }
-
-            }
-            elseif(isset($columreason)){
-                foreach($columreason as $key1=>$value1){
+            }elseif(isset($columnhistory2)){
+                foreach($columnhistory2 as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
+
                     for($i=$range;$i<=$limit;$i+=$range){
                         //start year
                         $time = $k*365*24*3600;
@@ -607,14 +601,13 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[1]->whereIn('id', HivStatus::where('unknown_reason',$key1)->get()->lists('visit_id')+array('0'))->whereIn('patient_id',Patient::whereBetween('birth_date',array($end,$start))->get()->lists('id')+array('0'));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column .= ($i < $limit)?$que->count().",":$que->count();
                         $k=$i;
                     }
-                    $column .= ($col < count($columreason))?"]},":"]}";
+                    $column .= ($col < count($columnhistory2))?"]},":"]}";
                     $col++;
                 }
-
             }
 
             $title = Input::get('vertical')." Age Range ". $query[2]." ";
@@ -669,20 +662,19 @@ class HivController extends \BaseController {
         $title = "";$pat = false;
         $row = "categories: [";
         $column = "";
-        if(Input::get("show") == "HIV Status"){
-            $columntype = array('Unknown'=>'Unknown','Negative'=>'Negative','Positive'=>'Positive');
+        if(Input::get("show") == "VIA Counseling Status"){
+            $columntype = array("yes" => "Via Counseling Done","no" => "Via Counseling Not Done");
 
-        }elseif(Input::get("show") == "CD4 Count"){
-            $columcd4 = array('0'=>'0-200','200'=>'200-400','400'=>'400-600','600'=>'600-1000','1000'=>'1000-1500');
+        }elseif(Input::get("show") == "VIA Test Status"){
+            $columnhistory = array('yes'=>'VIA Test Done','no'=>'VIA Test Not Done');
+        }elseif(Input::get("show") == "Test Results"){
+            $columnhistory1 = array('Normal cervix (Negative)'=>'Normal cervix (Negative)','Abnormal cervix (Positive)'=>'Abnormal cervix (Positive)');
+        }elseif(Input::get("show") == "Reason"){
+            $columnhistory2 = array('SCJ not seen'=>'SCJ not seen','Heavy menses'=>'Heavy menses','Suspicious of cancer'=>'Suspicious of cancer','Massive endocervical discharge (cervicitis)'=>'Massive endocervical discharge (cervicitis)','pregnancy'=>'pregnancy');
         }
         if(Input::get("vertical") == "Patients"){
             $pat = true;
-        }elseif(Input::get("show") == "Test  Results"){
-            $columresult = array('yes'=>'Tests','Positive'=>'Positive','Negative'=>'Negative');
-        }elseif(Input::get("show") == "Decline Reason"){
-            $columreason = array('Counselling not offered'=>'Counselling not offered','Patient declined test'=>'Patient declined test','Test kits shortage'=>'Test kits shortage','Other'=>'Other');
-        }
-        elseif(Input::get("vertical") == "Visits"){
+        }elseif(Input::get("vertical") == "Visits"){
             $vis = true;
         }
 
@@ -706,10 +698,10 @@ class HivController extends \BaseController {
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::where('HIV_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::where('status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }
                         $i++;
@@ -717,9 +709,8 @@ class HivController extends \BaseController {
                     $column .= ($col < count($columntype))?"]},":"]}";
                     $col++;
                 }
-            }elseif(isset($columcd4)){
-                foreach($columcd4 as $key1=>$value1){
-                    $arr = explode("-",$value1);
+            }elseif(isset($columnhistory)){
+                foreach($columnhistory as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
                     $i = 1;
                     foreach($row1 as $key => $value){
@@ -729,20 +720,19 @@ class HivController extends \BaseController {
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::whereBetween('cd4_count',array($arr[0],$arr[1]))->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::whereBetween('pitc_cd4',array($arr[0],$arr[1]))->get()->lists('visit_id')+ContraceptiveHistory::where('current_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }
                         $i++;
                     }
-                    $column .= ($col < count($columcd4))?"]},":"]}";
+                    $column .= ($col < count($columnhistory))?"]},":"]}";
                     $col++;
                 }
-            }elseif(isset($columresult)){
-                $count = 0;
-                foreach($columresult as $key1=>$value1){
+            }elseif(isset($columnhistory1)){
+                foreach($columnhistory1 as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
                     $i = 1;
                     foreach($row1 as $key => $value){
@@ -751,20 +741,20 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        ($count == 0)?
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_agreed',"yes")->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to)):
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column.= ($i < count($row1))?$que->count().",":$que->count();
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }
                         $i++;
                     }
-                    $count++;
-                    $column .= ($col < count($columresult))?"]},":"]}";
+                    $column .= ($col < count($columnhistory))?"]},":"]}";
                     $col++;
                 }
-
-            }
-            elseif(isset($columreason)){
-                foreach($columreason as $key1=>$value1){
+            }elseif(isset($columnhistory2)){
+                foreach($columnhistory2 as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
                     $i = 1;
                     foreach($row1 as $key => $value){
@@ -773,16 +763,19 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[1]->whereIn('id', HivStatus::where('unknown_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column.= ($i < count($row1))?$que->count().",":$que->count();
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }
                         $i++;
                     }
-                    $column .= ($col < count($columreason))?"]},":"]}";
+                    $column .= ($col < count($columnhistory2))?"]},":"]}";
                     $col++;
                 }
-
             }
-
             $title = Input::get('vertical')." ". $query[2]." ".Input::get('Year');
         }
         elseif(Input::get("horizontal") == "Years"){
@@ -804,10 +797,10 @@ class HivController extends \BaseController {
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::where('HIV_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::where('status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }
                         $i++;
@@ -815,9 +808,8 @@ class HivController extends \BaseController {
                     $column .= ($col < count($columntype))?"]},":"]}";
                     $col++;
                 }
-            }elseif(isset($columcd4)){
-                foreach($columcd4 as $key1=>$value1){
-                    $arr = explode("-",$value1);
+            }elseif(isset($columnhistory)){
+                foreach($columnhistory as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
                     $i = 1;
                     foreach($row1 as $value){
@@ -827,20 +819,19 @@ class HivController extends \BaseController {
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
                         if($pat){
-                            $que = $query[0]->whereIn('id', PatientReport::whereBetween('cd4_count',array($arr[0],$arr[1]))->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }elseif($vis){
-                            $que = $query[1]->whereIn('id', HivStatus::whereBetween('pitc_cd4',array($arr[0],$arr[1]))->get()->lists('visit_id')+ContraceptiveHistory::where('current_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
                             $column .= ($i < count($row1))?$que->count().",":$que->count();
                         }
                         $i++;
                     }
-                    $column .= ($col < count($columcd4))?"]},":"]}";
+                    $column .= ($col < count($columnhistory))?"]},":"]}";
                     $col++;
                 }
-            }elseif(isset($columresult)){
-                $count = 0;
-                foreach($columresult as $key1=>$value1){
+            }elseif(isset($columnhistory1)){
+                foreach($columnhistory1 as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
                     $i = 1;
                     foreach($row1 as $value){
@@ -849,19 +840,20 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        ($count == 0)?
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_agreed',"yes")->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to)):
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column.= ($i < count($row1))?$que->count().",":$que->count();
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }
                         $i++;
                     }
-                    $count++;
-                    $column .= ($col < count($columresult))?"]},":"]}";
+                    $column .= ($col < count($columnhistory1))?"]},":"]}";
                     $col++;
                 }
-
-            }elseif(isset($columreason)){
-                foreach($columreason as $key1=>$value1){
+            }elseif(isset($columnhistory2)){
+                foreach($columnhistory2 as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
                     $i = 1;
                     foreach($row1 as $value){
@@ -870,14 +862,18 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[1]->whereIn('id', HivStatus::where('unknown_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
-                        $column.= ($i < count($row1))?$que->count().",":$que->count();
+                        if($pat){
+                            $que = $query[0]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }elseif($vis){
+                            $que = $query[1]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('visit_id')+array('0'))->whereBetween('created_at',array($from,$to));
+                            $column .= ($i < count($row1))?$que->count().",":$que->count();
+                        }
                         $i++;
                     }
-                    $column .= ($col < count($columreason))?"]},":"]}";
+                    $column .= ($col < count($columnhistory2))?"]},":"]}";
                     $col++;
                 }
-
             }
             $title = Input::get('vertical')." ". $query[2]." ".Input::get('Year');
         }
@@ -920,16 +916,15 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[0]->whereIn('id', PatientReport::where('HIV_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('via_counselling_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column .= ($i < $limit)?$que->count().",":$que->count();
                         $k=$i;
                     }
                     $column .= ($col < count($columntype))?"]},":"]}";
                     $col++;
                 }
-            }elseif(isset($columcd4)){
-                foreach($columcd4 as $key1=>$value1){
-                    $arr = explode("-",$value1);
+            }elseif(isset($columnhistory)){
+                foreach($columnhistory as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
 
                     for($i=$range;$i<=$limit;$i+=$range){
@@ -945,17 +940,17 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[0]->whereIn('id', PatientReport::whereBetween('cd4_count',array($arr[0],$arr[1]))->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('via_test_status',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column .= ($i < $limit)?$que->count().",":$que->count();
                         $k=$i;
                     }
-                    $column .= ($col < count($columcd4))?"]},":"]}";
+                    $column .= ($col < count($columnhistory))?"]},":"]}";
                     $col++;
                 }
-            }elseif(isset($columresult)){
-                $count = 0;
-                foreach($columresult as $key1=>$value1){
+            }elseif(isset($columnhistory1)){
+                foreach($columnhistory1 as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
+
                     for($i=$range;$i<=$limit;$i+=$range){
                         //start year
                         $time = $k*365*24*3600;
@@ -969,20 +964,17 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        ($count == 0)?
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_agreed',"yes")->get()->lists('visit_id')+array('0'))->whereIn('patient_id',Patient::whereBetween('birth_date',array($end,$start))->get()->lists('id')+array('0')):
-                            $que = $query[1]->whereIn('id', HivStatus::where('pitc_result',$key1)->get()->lists('visit_id')+array('0'))->whereIn('patient_id',Patient::whereBetween('birth_date',array($end,$start))->get()->lists('id')+array('0'));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('via_result',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column .= ($i < $limit)?$que->count().",":$que->count();
                         $k=$i;
                     }
-                    $count++;
-                    $column .= ($col < count($columresult))?"]},":"]}";
+                    $column .= ($col < count($columnhistory1))?"]},":"]}";
                     $col++;
                 }
-
-            }elseif(isset($columreason)){
-                foreach($columreason as $key1=>$value1){
+            }elseif(isset($columnhistory2)){
+                foreach($columnhistory2 as $key1=>$value1){
                     $column.= "{ name: '".$value1."', data: [ ";
+
                     for($i=$range;$i<=$limit;$i+=$range){
                         //start year
                         $time = $k*365*24*3600;
@@ -996,14 +988,13 @@ class HivController extends \BaseController {
                         $patientquery = DB::table('patient');
                         $visitquery   = DB::table('visit');
                         $query = $this->processQuery($patientquery,$visitquery);
-                        $que = $query[1]->whereIn('id', HivStatus::where('unknown_reason',$key1)->get()->lists('visit_id')+array('0'))->whereIn('patient_id',Patient::whereBetween('birth_date',array($end,$start))->get()->lists('id')+array('0'));
+                        $que = $query[0]->whereIn('id', ViaStatus::where('reject_reason',$key1)->get()->lists('patient_id')+array('0'))->whereBetween('birth_date',array($end,$start));
                         $column .= ($i < $limit)?$que->count().",":$que->count();
                         $k=$i;
                     }
-                    $column .= ($col < count($columreason))?"]},":"]}";
+                    $column .= ($col < count($columnhistory2))?"]},":"]}";
                     $col++;
                 }
-
             }
 
             $title = Input::get('vertical')." Age Range ". $query[2]." ";
