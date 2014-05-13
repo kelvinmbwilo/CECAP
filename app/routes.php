@@ -189,3 +189,34 @@ Route::post('report/via/bar',array('uses'=>'VIAController@makeBar'));
 //displaying line chart
 Route::post('report/via/line',array('uses'=>'VIAController@makeLine'));
 
+/**
+ * VIA Status Reports
+ * Using VIAController
+ */
+//displaying table chart
+Route::post('report/general/table',array('uses'=>'GeneralController@makeTable'));
+
+//displaying bar chart
+Route::post('report/general/bar',array('uses'=>'GeneralController@makeBar'));
+
+//displaying line chart
+Route::post('report/general/line',array('uses'=>'GeneralController@makeLine'));
+
+//displaying line chart
+//Route::post('report/general/pie',array('uses'=>'GeneralController@makePie'));
+
+/**
+ * Dashboard settings
+ * Using Dashboard Controller
+ */
+//displaying table chart
+Route::get('dashboard/settings',array('uses'=>'DashboardController@index'));
+
+//Changing The Title
+Route::post('dashboard/title',array('uses'=>'DashboardController@setTitle'));
+
+//Changing TheWelcome Note
+Route::post('dashboard/welcome_note',array('uses'=>'DashboardController@setWelcome'));
+
+//Changing The Chart
+Route::post('dashboard/chat',array('uses'=>'DashboardController@setChat'));
