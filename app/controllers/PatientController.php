@@ -86,6 +86,7 @@ class PatientController extends \BaseController {
             "patient_id"                    => $patient->id,
             "visit_id"                      => $visit->id,
             "status"                        =>(Input::has("hiv_status"))?Input::get("hiv_status"):"",
+            "test_status"                   =>(Input::has("hiv_test_status"))?Input::get("hiv_test_status"):"",
             "unknown_reason"                =>(Input::has("unknown_reason"))?Input::get("unknown_reason"):"",
             "years_since_first_diagnosis"   =>(Input::has("year_since_diagnosis"))?Input::get("year_since_diagnosis"):"",
             "year_of_last_test"             =>(Input::has("last_test"))?Input::get("last_test"):"",
@@ -116,6 +117,13 @@ class PatientController extends \BaseController {
             "result_id"     => (Input::has("colpo_result"))?Input::get("colpo_result"):""
         ));
 
+        //adding cervical screening
+        CervicalScreening::create(array(
+            "patient_id"    => $patient->id,
+            "status"        => Input::get("screening_status"),
+            "last_test"     => (Input::has("last_screen"))?Input::get("last_screen"):""
+        ));
+
         //adding Pap smear result
         PapsmearStatus::create(array(
             "patient_id"    => $patient->id,
@@ -129,9 +137,11 @@ class PatientController extends \BaseController {
             "patient_id"        => $patient->id,
             "visit_id"          => $visit->id,
             "type_id"           => (Input::has("intervention"))?Input::get("intervention"):"",
-            "indicator_id"         => (Input::has("indicator"))?Input::get("indicator"):"",
-            "histology_id"         => (Input::has("histology"))?Input::get("histology"):"",
+            "indicator_id"      => (Input::has("indicator"))?Input::get("indicator"):"",
+            "histology_id"      => (Input::has("histology"))?Input::get("histology"):"",
             "cancer_id"         => (Input::has("cancer"))?Input::get("cancer"):"",
+            "grade"             => (Input::has("hist_grade"))?Input::get("hist_grade"):"",
+            "stages"            => (Input::has("stages"))?Input::get("stages"):"",
             "differentiation"   => (Input::has("differentiation"))?Input::get("differentiation"):""
         ));
 
@@ -273,19 +283,22 @@ class PatientController extends \BaseController {
 
         //adding HIV status
         HivStatus::create(array(
-            "patient_id"                => $patient->id,
-            "visit_id"                  => $visit->id,
-            "status"                    =>(Input::has("hiv_status"))?Input::get("hiv_status"):"",
-            "unknown_reason"            =>(Input::has("unknown_reason"))?Input::get("unknown_reason"):"",
-            "year_of_last_test"         =>(Input::has("last_test"))?Input::get("last_test"):"",
-            "art_status"                =>(Input::has("art_status"))?Input::get("art_status"):"",
-            "current_art_status"        =>(Input::has("current_art_status"))?Input::get("current_art_status"):"",
-            "pitc_offered"              =>(Input::get("test_again") == "yes")?"yes":"no",
-            "pitc_agreed"               =>(Input::has("test_again"))?Input::get("test_again"):"",
-            "pitc_result"               =>(Input::has("current_test_result"))?Input::get("current_test_result"):"",
-            "pitc_cd4_count"            =>(Input::has("current_cd4"))?Input::get("current_cd4"):"",
-            "prev_cd4_count"            =>(Input::has("prev_cd4"))?Input::get("prev_cd4"):"",
+            "patient_id"                    => $patient->id,
+            "visit_id"                      => $visit->id,
+            "status"                        =>(Input::has("hiv_status"))?Input::get("hiv_status"):"",
+            "test_status"                   =>(Input::has("hiv_test_status"))?Input::get("hiv_test_status"):"",
+            "unknown_reason"                =>(Input::has("unknown_reason"))?Input::get("unknown_reason"):"",
+            "years_since_first_diagnosis"   =>(Input::has("year_since_diagnosis"))?Input::get("year_since_diagnosis"):"",
+            "year_of_last_test"             =>(Input::has("last_test"))?Input::get("last_test"):"",
+            "art_status"                    =>(Input::has("art_status"))?Input::get("art_status"):"",
+            "current_art_status"            =>(Input::has("current_art_status"))?Input::get("current_art_status"):"",
+            "pitc_offered"                  =>(Input::get("test_again") == "yes")?"yes":"no",
+            "pitc_agreed"                   =>(Input::has("test_again"))?Input::get("test_again"):"",
+            "pitc_result"                   =>(Input::has("current_test_result"))?Input::get("current_test_result"):"",
+            "pitc_cd4_count"                =>(Input::has("current_cd4"))?Input::get("current_cd4"):"",
+            "prev_cd4_count"                =>(Input::has("prev_cd4"))?Input::get("prev_cd4"):"",
         ));
+
         //adding VIA Status
         ViaStatus::create(array(
             "patient_id"                => $patient->id,
@@ -320,6 +333,8 @@ class PatientController extends \BaseController {
             "indicator_id"      => (Input::has("indicator"))?Input::get("indicator"):"",
             "histology_id"      => (Input::has("histology"))?Input::get("histology"):"",
             "cancer_id"         => (Input::has("cancer"))?Input::get("cancer"):"",
+            "grade"             => (Input::has("hist_grade"))?Input::get("hist_grade"):"",
+            "stages"            => (Input::has("stages"))?Input::get("stages"):"",
             "differentiation"   => (Input::has("differentiation"))?Input::get("differentiation"):""
         ));
 

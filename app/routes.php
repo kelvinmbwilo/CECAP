@@ -220,3 +220,29 @@ Route::post('dashboard/welcome_note',array('uses'=>'DashboardController@setWelco
 
 //Changing The Chart
 Route::post('dashboard/chat',array('uses'=>'DashboardController@setChat'));
+
+
+/**
+ * Managing facilities
+ * Using FacilitiesController
+ */
+//displaying table chart
+Route::get('facilities',array('uses'=>'FacilitiesController@index'));
+
+//display a form to add new user
+Route::get('facilities/add',array('as'=>'addfacilities', 'uses'=>'FacilitiesController@create'));
+
+//display a list of users
+Route::get('facilities/list',array('uses'=>'FacilitiesController@userlist'));
+
+//adding new user
+Route::post('facilities/add',array('as'=>'addfacilities1', 'uses'=>'FacilitiesController@store'));
+
+//display a form to edit users information
+Route::get('facilities/edit/{id}',array('as'=>'editfacilities', 'uses'=>'FacilitiesController@edit'));
+
+//editng users information
+Route::post('facilities/edit/{id}',array('as'=>'editfacilities', 'uses'=>'FacilitiesController@update'));
+
+//deleting user
+Route::post('facilities/delete/{id}',array('as'=>'deletefacilities', 'uses'=>'FacilitiesController@destroy'));

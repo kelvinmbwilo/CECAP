@@ -45,6 +45,12 @@
 </div>
 
 <div class="row">
+    <h3>Cervical Screening</h3>
+    @include('patient.cervical_screening')
+
+</div>
+
+<div class="row">
     <h3>HIV</h3>
     @include('patient.hiv')
 

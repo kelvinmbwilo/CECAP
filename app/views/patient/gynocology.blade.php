@@ -30,9 +30,9 @@
 </div>
 <div class='form-group'>
     <div class='col-sm-6'>
-        Number of sexual partners<br>{{ Form::select('sexual_partner',array_combine(range(1,100), range(1,100)),'',array('class'=>'form-control','required'=>'requiered')) }}
+        Current sexual partners<br>{{ Form::select('sexual_partner',array_combine(range(1,100), range(1,100)),'',array('class'=>'form-control','required'=>'requiered')) }}
     </div>
     <div class='col-sm-6'>
-        Number of your partner's sexual partners<br> {{ Form::select('partner_sexual_partner',array_combine(range(1,100), range(1,100)),'',array('class'=>'form-control','required'=>'requiered')) }}
+        Partner's current sexual partners<br> {{ Form::select('partner_sexual_partner',array_combine(range(1,100), range(1,100)),'',array('class'=>'form-control','required'=>'requiered')) }}
     </div>
 </div>

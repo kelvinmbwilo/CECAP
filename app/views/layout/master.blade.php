@@ -101,6 +101,7 @@
                             <li><a href="#">View Saved Reports</a></li>
                         </ul>
                     </li>
+                    <li><a href="{{ url('facilities') }}">Facilities</a></li>
                     <li><a href="{{ url('users') }}">Users</a></li>
 
                 </ul>
